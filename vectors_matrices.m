@@ -355,21 +355,21 @@ M(1:4, :)
 M(:, 2:7)
 
 %%
-% Again, we can use the assignment
-% operator to _modify_ a row or column:
-
-M(:, 2:7) = 0.0;
-disp(M)
-
-%%
 % To select a _submatrix_, we provide
 % ranges in both dimensions:
-
 M(4:6, 5:7)
 
 %%
 % We can also provide strides
 % in either dimension:
+M(2:2:end, 5)
+
+%%
+% Again, we can use the assignment
+% operator to _modify_ rows or columns:
+
+M(:, 2:7) = 0.0;
+disp(M)
 
 %%
 % Let's go back to the data
@@ -383,8 +383,6 @@ race_times = [yoshi_times; koopa_times]
 % 3. Extract both |yoshi| and |koopa|'s lap times for lap 4
 % 4. sum(v) sums the element of a *vector*, can you
 % figure out who won the race?
-
-M(2:2:end, 5)
 
 %% Generating Matrices
 % We've seen that we can create
