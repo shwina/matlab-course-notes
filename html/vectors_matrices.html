@@ -1,0 +1,1072 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>vectors_matrices</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-01-07"><meta name="DC.source" content="vectors_matrices.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Introduction</a></li><li><a href="#3">Vectors</a></li><li><a href="#13">Accessing Vector Values</a></li><li><a href="#28">Sequences</a></li><li><a href="#36">Row and Column Vectors</a></li><li><a href="#44">Matrices</a></li><li><a href="#49">Accesing Matrix Values</a></li><li><a href="#62">Generating Matrices</a></li><li><a href="#70">Matrix Dimensions</a></li><li><a href="#72">Arithmetic with Vectors and Matrices</a></li></ul></div><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
+<span class="comment">% LICENSE: MIT (http://opensource.org/licenses/MIT)</span>
+<span class="comment">% (TL;DR)</span>
+<span class="comment">% You can do whatever you want</span>
+<span class="comment">% with this code</span>
+<span class="comment">% as long as you include the original copyright</span>
+<span class="comment">% and license in their original sources.</span>
+<span class="comment">% I don't guarantee that</span>
+<span class="comment">% any of this code</span>
+<span class="comment">% serves any purpose whatsoever.</span>
+</pre><h2>Introduction<a name="2"></a></h2><p>In this document, we'll learn about Vectors and Matrices, the fundamental ways to organize data in MATLAB</p><h2>Vectors<a name="3"></a></h2><p>So far, we have used MATLAB to compute with numbers, i.e., <i>scalars</i>:</p><pre class="codeinput">a = 2*5*sin(pi/4);
+b = log(a);
+disp(b)
+</pre><pre class="codeoutput">    1.9560
+
+</pre><p>You shouldn't be too impressed with any of this, it's nothing we can't do with an ordinary calculator. The <i>true</i> power of MATLAB lies in its ability to operate on <b>vectors</b>. Here's how to create a vector:</p><pre class="codeinput">temp = [14, 21, 27, 32, 37, 37, 34, 27];
+disp(temp)
+</pre><pre class="codeoutput">    14    21    27    32    37    37    34    27
+
+</pre><p>Vectors are created by putting a list of comma-separated values in square brackets. In our example, we <i>assign</i> our vector to the name <tt>temp</tt> (the rules for vector assignment are the same as for scalars). We then <i>inspect</i> the value of <tt>temp</tt> using <tt>disp</tt>. MATLAB gives us a pretty representation of our vector.</p><p>Vectors are useful for a lot of different things. For instance, they can be used to hold a bunch of related values, e.g., readings from an experiment, student grades, patient heights, etc., Incidentally, <i>our</i> vector, <tt>temp</tt>, holds Google's prediction for the minimum temperature for the next eight days (that's why we named it <tt>temp</tt>!)</p><p>We can get the length or "size" of a vector, using <tt>length</tt>:</p><pre class="codeinput">length(temp)
+</pre><pre class="codeoutput">
+ans =
+
+     8
+
+</pre><p>Having our values in a vector is really useful. We can compute the mean temperature:</p><pre class="codeinput">mean(temp)
+</pre><pre class="codeoutput">
+ans =
+
+   28.6250
+
+</pre><p>And even the maximum or minimum</p><pre class="codeinput">max(temp)
+</pre><pre class="codeoutput">
+ans =
+
+    37
+
+</pre><pre class="codeinput">min(temp)
+</pre><pre class="codeoutput">
+ans =
+
+    14
+
+</pre><p>We can even visualize how the minimum temperature will vary:</p><pre class="codeinput">plot(temp)
+</pre><img vspace="5" hspace="5" src="vectors_matrices_01.png" alt=""> <p>We hope you're convinced that MATLAB is a bit more useful than your average calculator! But lets move on and learn more about vectors:</p><h2>Accessing Vector Values<a name="13"></a></h2><p>As we discussed, we can create vectors by putting comma-separated values in square brackets:</p><pre class="codeinput">temp = [14, 21, 27, 32, 37, 37, 34, 27];
+</pre><p>We often want to access specific values of a vector. For instance, let's say we want only the temperature on the third day:</p><pre class="codeinput">temp(3)
+</pre><pre class="codeoutput">
+ans =
+
+    27
+
+</pre><p>Here, <tt>3</tt> is called an <i>index</i>.</p><p>And don't forget, you can assign the extracted value to a variable:</p><pre class="codeinput">temp_third = temp(3);
+disp(temp_third)
+</pre><pre class="codeoutput">    27
+
+</pre><p>You can also <i>change</i> the value you access. Let's say we made a mistake in recording the temperature for the third day, to fix it:</p><pre class="codeinput">temp(3) = 30.0;
+</pre><p>Remember, in commands like this, we're not assigning the value on the right to a new name, we're <i>modifying</i> an existing variable. This is also valid (and extremely useful!) use of the assignment (<tt>=</tt>) operator.</p><p>We can also get vector values for a <i>range</i> of indices. For this, we use the colon (<tt>:</tt>) operator For instance, if we wanted the temperatures for days 2 through 6:</p><pre class="codeinput">temp(2:6)
+</pre><pre class="codeoutput">
+ans =
+
+    21    30    32    37    37
+
+</pre><p>The answer is, of course, a vector. It's a "slice" of our original vector <tt>temp</tt>.</p><p>The <tt>end</tt> keyword is useful when we want to refer to the last index. Examine how <tt>end</tt> is used in the following commands:</p><pre class="codeinput">temp(end)
+</pre><pre class="codeoutput">
+ans =
+
+    27
+
+</pre><pre class="codeinput">temp(4:end)
+</pre><pre class="codeoutput">
+ans =
+
+    32    37    37    34    27
+
+</pre><p>Finally, you can provide a <i>stride</i> to the range of indices. For instance, if we want every second temperature from day 1 to day 7, we  can do</p><pre class="codeinput">temp(1:2:7)
+</pre><pre class="codeoutput">
+ans =
+
+    14    30    37    34
+
+</pre><p>or if we want every <i>third</i> temperature from day 1 to day 8:</p><pre class="codeinput">temp(1:3:8)
+</pre><pre class="codeoutput">
+ans =
+
+    14    32    34
+
+</pre><p>The middle index is a <i>stride</i> or <i>step</i>. The indices <tt>(1:3:8)</tt> can be read as "1 through 8 in steps of 3"</p><p>Strides can be negative also, and useful when we want to get values "backwards". Here is how to get the temperatures from day 6 to day 2, backwards:</p><pre class="codeinput">temp(6:-1:2)
+</pre><pre class="codeoutput">
+ans =
+
+    37    37    32    30    21
+
+</pre><p>To compare, here are the "forward" values:</p><pre class="codeinput">temp(2:6)
+</pre><pre class="codeoutput">
+ans =
+
+    21    30    32    37    37
+
+</pre><h2>Sequences<a name="28"></a></h2><p>Here's an example of how we've been constructing vectors so far:</p><pre class="codeinput">v = [1.2, 3.2, 7.6, 8.8];
+</pre><p>Often, we want to <i>generate a sequence</i> of numbers. For examaple, if we want the sequence 1,2,3,4,...10, we can do:</p><pre class="codeinput">seq = 1:10;
+disp(seq)
+</pre><pre class="codeoutput">     1     2     3     4     5     6     7     8     9    10
+
+</pre><p>Note that this usage of the colon (<tt>:</tt>) operator here is different from the previous section. Make sure you understand this difference before moving on.</p><p>Of course, we don't have to start with <tt>1</tt>:</p><pre class="codeinput">seq = 2:8;
+disp(seq)
+</pre><pre class="codeoutput">     2     3     4     5     6     7     8
+
+</pre><p>And our sequence can have a stride:</p><pre class="codeinput">seq = 2:4:20;
+disp(seq)
+</pre><pre class="codeoutput">     2     6    10    14    18
+
+</pre><p>And, yes, strides can be negative:</p><pre class="codeinput">seq = 18:-5:-10;
+disp(seq)
+</pre><pre class="codeoutput">    18    13     8     3    -2    -7
+
+</pre><p>We can even generate sequences of floating-point ("decimal") numbers:</p><pre class="codeinput">seq = 0.5:0.2:2.5;
+disp(seq)
+</pre><pre class="codeoutput">  Columns 1 through 7
+
+    0.5000    0.7000    0.9000    1.1000    1.3000    1.5000    1.7000
+
+  Columns 8 through 11
+
+    1.9000    2.1000    2.3000    2.5000
+
+</pre><pre class="codeinput">seq = 1.0:-0.1:0;
+disp(seq)
+</pre><pre class="codeoutput">  Columns 1 through 7
+
+    1.0000    0.9000    0.8000    0.7000    0.6000    0.5000    0.4000
+
+  Columns 8 through 11
+
+    0.3000    0.2000    0.1000         0
+
+</pre><h2>Row and Column Vectors<a name="36"></a></h2><p>Vectors can be "long" or "tall". So far, we've been working with "long" vectors:</p><pre class="codeinput">yoshi_times = [22.2, 21.7, 23.4, 32.6, 18.0];
+disp(yoshi_times)
+</pre><pre class="codeoutput">   22.2000   21.7000   23.4000   32.6000   18.0000
+
+</pre><p>We can also create "tall" vectors:</p><pre class="codeinput">koopa_times = [22.4; 23.6; 24.4; 20.9; 19.0];
+disp(koopa_times)
+</pre><pre class="codeoutput">   22.4000
+   23.6000
+   24.4000
+   20.9000
+   19.0000
+
+</pre><p>We can switch between "long" and "tall" vectors using the <i>transpose</i> (<tt>'</tt>) operator:</p><pre class="codeinput">disp(yoshi_times')
+</pre><pre class="codeoutput">   22.2000
+   21.7000
+   23.4000
+   32.6000
+   18.0000
+
+</pre><p>The length of <tt>yoshi_times</tt> and <tt>yoshi_times'</tt> is the same:</p><pre class="codeinput">length(yoshi_times)
+</pre><pre class="codeoutput">
+ans =
+
+     5
+
+</pre><pre class="codeinput">length(yoshi_times')
+</pre><pre class="codeoutput">
+ans =
+
+     5
+
+</pre><p>But they have different <i>sizes</i>:</p><pre class="codeinput">size(yoshi_times)
+</pre><pre class="codeoutput">
+ans =
+
+     1     5
+
+</pre><pre class="codeinput">size(yoshi_times')
+</pre><pre class="codeoutput">
+ans =
+
+     5     1
+
+</pre><p>"Long" vectors are called row vectors, and "tall" vectors are called column vectors. Remember, columns (in architecture), are "tall". They are both specific cases of <i>matrices</i>, which we will study in the following section.</p><h2>Matrices<a name="44"></a></h2><p>So far, we've dealt with <i>scalars</i> (single numbers), and <i>vectors</i> (a collection of scalars):</p><pre class="codeinput">yoshi_times = [22.2, 21.7, 23.4, 32.6, 18.0];
+koopa_times = [22.4, 23.6, 24.4, 20.9, 19.0];
+</pre><p><tt>yoshi_times</tt> and <tt>koopa_times</tt> record the lap times of "yoshi" and "koopa" in a five-lap race.</p><p>We can "stack" these timings like so:</p><pre class="codeinput">race_times = [yoshi_times; koopa_times];
+disp(race_times)
+</pre><pre class="codeoutput">   22.2000   21.7000   23.4000   32.6000   18.0000
+   22.4000   23.6000   24.4000   20.9000   19.0000
+
+</pre><p>What we get is a sort of "table" of numbers. The first row is <tt>koopa_times</tt> and the second is <tt>yoshi_times</tt>. This "table" is called a <i>matrix</i>. Let's check it's <tt>size</tt>:</p><pre class="codeinput">size(race_times)
+</pre><pre class="codeoutput">
+ans =
+
+     2     5
+
+</pre><p>MATLAB reports the "size" of a matrix as [rows, columns]. The first number indicates the number of rows, and the second indicates the number of columns.</p><h2>Accesing Matrix Values<a name="49"></a></h2><p>To experiment with matrices, let's create a "magic matrix of 10 rows and 10 columns":</p><pre class="codeinput">M = magic(10);
+</pre><p>As with vectors, we often want to extract a single value from a matrix. We do this by supplying <i>two</i> indices:</p><pre class="codeinput">M(2, 4)
+</pre><pre class="codeoutput">
+ans =
+
+    14
+
+</pre><p>The above command selects the value sitting on the second row and fourth column of our matrix</p><p>We can also extract an entire row of values:</p><pre class="codeinput">M(3, :)
+</pre><pre class="codeoutput">
+ans =
+
+     4    81    88    20    22    54    56    63    70    47
+
+</pre><p>The index <tt>(3, :)</tt> selects the values sitting on the <i>third</i> row, and <i>all</i> columns - effectively, the entire row</p><p>What if we only wanted a handful of values from the third row?</p><pre class="codeinput">M(3, 2:6)
+</pre><pre class="codeoutput">
+ans =
+
+    81    88    20    22    54
+
+</pre><p>The index <tt>(3, 2:6)</tt> selects the values sitting on the third row, and columns 2 through 6.</p><p>We can also select <i>multiple</i> rows:</p><pre class="codeinput">M(1:4, :)
+</pre><pre class="codeoutput">
+ans =
+
+    92    99     1     8    15    67    74    51    58    40
+    98    80     7    14    16    73    55    57    64    41
+     4    81    88    20    22    54    56    63    70    47
+    85    87    19    21     3    60    62    69    71    28
+
+</pre><p>Or columns:</p><pre class="codeinput">M(:, 2:7)
+</pre><pre class="codeoutput">
+ans =
+
+    99     1     8    15    67    74
+    80     7    14    16    73    55
+    81    88    20    22    54    56
+    87    19    21     3    60    62
+    93    25     2     9    61    68
+    24    76    83    90    42    49
+     5    82    89    91    48    30
+     6    13    95    97    29    31
+    12    94    96    78    35    37
+    18   100    77    84    36    43
+
+</pre><p>To select a <i>submatrix</i>, we provide ranges in both dimensions:</p><pre class="codeinput">M(4:6, 5:7)
+</pre><pre class="codeoutput">
+ans =
+
+     3    60    62
+     9    61    68
+    90    42    49
+
+</pre><p>We can also provide strides in either dimension:</p><pre class="codeinput">M(2:2:end, 5)
+</pre><pre class="codeoutput">
+ans =
+
+    16
+     3
+    90
+    97
+    84
+
+</pre><p>Again, we can use the assignment operator to <i>modify</i> rows or columns:</p><pre class="codeinput">M(:, 2:7) = 0.0;
+disp(M)
+</pre><pre class="codeoutput">    92     0     0     0     0     0     0    51    58    40
+    98     0     0     0     0     0     0    57    64    41
+     4     0     0     0     0     0     0    63    70    47
+    85     0     0     0     0     0     0    69    71    28
+    86     0     0     0     0     0     0    75    52    34
+    17     0     0     0     0     0     0    26    33    65
+    23     0     0     0     0     0     0    32    39    66
+    79     0     0     0     0     0     0    38    45    72
+    10     0     0     0     0     0     0    44    46    53
+    11     0     0     0     0     0     0    50    27    59
+
+</pre><p>Let's go back to the data from our kart-race:</p><pre class="codeinput">yoshi_times = [22.2, 21.7, 23.4, 32.6, 18.0];
+koopa_times = [22.4, 23.6, 24.4, 20.9, 19.0];
+race_times = [yoshi_times; koopa_times]
+</pre><pre class="codeoutput">
+race_times =
+
+   22.2000   21.7000   23.4000   32.6000   18.0000
+   22.4000   23.6000   24.4000   20.9000   19.0000
+
+</pre><p>1. Displace race_times with the lap timings as columns (not rows) 2. Extract only <tt>yoshi</tt>'s lap times 3. Extract both <tt>yoshi</tt> and <tt>koopa</tt>'s lap times for lap 4 4. sum(v) sums the element of a <b>vector</b>, can you figure out who won the race?</p><h2>Generating Matrices<a name="62"></a></h2><p>We've seen that we can create matrices by hand:</p><pre class="codeinput">M = [1, 2, 3; 5, 6.2, 8; 2, 2, 2];
+</pre><p>And we've used <tt>magic</tt> like so:</p><pre class="codeinput">M = magic(5);
+</pre><p>There are other <i>functions</i> like <tt>magic</tt> that we can use to generate matrices.</p><pre class="codeinput">zeros(5)
+</pre><pre class="codeoutput">
+ans =
+
+     0     0     0     0     0
+     0     0     0     0     0
+     0     0     0     0     0
+     0     0     0     0     0
+     0     0     0     0     0
+
+</pre><pre class="codeinput">ones(6)
+</pre><pre class="codeoutput">
+ans =
+
+     1     1     1     1     1     1
+     1     1     1     1     1     1
+     1     1     1     1     1     1
+     1     1     1     1     1     1
+     1     1     1     1     1     1
+     1     1     1     1     1     1
+
+</pre><pre class="codeinput">ones(3,2)
+</pre><pre class="codeoutput">
+ans =
+
+     1     1
+     1     1
+     1     1
+
+</pre><pre class="codeinput">eye(5)
+</pre><pre class="codeoutput">
+ans =
+
+     1     0     0     0     0
+     0     1     0     0     0
+     0     0     1     0     0
+     0     0     0     1     0
+     0     0     0     0     1
+
+</pre><pre class="codeinput">eye(5) + ones(5)
+</pre><pre class="codeoutput">
+ans =
+
+     2     1     1     1     1
+     1     2     1     1     1
+     1     1     2     1     1
+     1     1     1     2     1
+     1     1     1     1     2
+
+</pre><pre class="codeinput">rand(3,5)
+</pre><pre class="codeoutput">
+ans =
+
+    0.0971    0.3171    0.4387    0.7952    0.4456
+    0.8235    0.9502    0.3816    0.1869    0.6463
+    0.6948    0.0344    0.7655    0.4898    0.7094
+
+</pre><h2>Matrix Dimensions<a name="70"></a></h2><p>As we saw, <tt>size(M)</tt> gives the number of rows and columns of a matrix, i.e., its <i>dimensions</i>. As with vectors, we can use the transpose operator (<tt>'</tt>) to flip a matrix's dimensions:</p><pre class="codeinput">x = rand(2, 5);
+disp(x)
+</pre><pre class="codeoutput">    0.7547    0.6797    0.1626    0.4984    0.3404
+    0.2760    0.6551    0.1190    0.9597    0.5853
+
+</pre><pre class="codeinput">disp(x')
+</pre><pre class="codeoutput">    0.7547    0.2760
+    0.6797    0.6551
+    0.1626    0.1190
+    0.4984    0.9597
+    0.3404    0.5853
+
+</pre><h2>Arithmetic with Vectors and Matrices<a name="72"></a></h2><p>Vectors and Matrices can be multiplied freely with scalars:</p><pre class="codeinput">M = ones(5);
+M = 2*M;
+disp(M)
+</pre><pre class="codeoutput">     2     2     2     2     2
+     2     2     2     2     2
+     2     2     2     2     2
+     2     2     2     2     2
+     2     2     2     2     2
+
+</pre><pre class="codeinput">t = 0:0.1:1;
+m = -0.2*t;
+disp(m)
+</pre><pre class="codeoutput">  Columns 1 through 7
+
+         0   -0.0200   -0.0400   -0.0600   -0.0800   -0.1000   -0.1200
+
+  Columns 8 through 11
+
+   -0.1400   -0.1600   -0.1800   -0.2000
+
+</pre><p>To do <b>elementwise</b> operations between to vectors and matrices, they need to be the same shape:</p><pre class="codeinput">a = [0.6, 0.2, 0.8];
+b = [2, 3, 2];
+c = a + b;
+disp(c)
+</pre><pre class="codeoutput">    2.6000    3.2000    2.8000
+
+</pre><pre class="codeinput">c = a - b
+</pre><pre class="codeoutput">
+c =
+
+   -1.4000   -2.8000   -1.2000
+
+</pre><pre class="codeinput">c = a.*b
+</pre><pre class="codeoutput">
+c =
+
+    1.2000    0.6000    1.6000
+
+</pre><pre class="codeinput">c = a.^b
+</pre><pre class="codeoutput">
+c =
+
+    0.3600    0.0080    0.6400
+
+</pre><pre class="codeinput">M = ones(3)*2;
+B = rand(3);
+disp(B)
+</pre><pre class="codeoutput">    0.2238    0.5060    0.9593
+    0.7513    0.6991    0.5472
+    0.2551    0.8909    0.1386
+
+</pre><pre class="codeinput">C = M+B
+</pre><pre class="codeoutput">
+C =
+
+    2.2238    2.5060    2.9593
+    2.7513    2.6991    2.5472
+    2.2551    2.8909    2.1386
+
+</pre><pre class="codeinput">C = M.*B
+</pre><pre class="codeoutput">
+C =
+
+    0.4476    1.0119    1.9186
+    1.5025    1.3982    1.0944
+    0.5102    1.7818    0.2772
+
+</pre><p>Elementwise multiplication and exponentiation are done using the <tt>.*</tt> and <tt>.^</tt> operator</p><p>Again, elementwise operations don't work for incompatible dimensions/sizes:</p><pre>a = [0.6, 0.2, 0.8];
+b = [1., 2.]
+a.*b</pre><pre>a = [0.6, 0.2, 0.8];
+b = [1., 2., 1.]';
+a.*b</pre><p>Elementwise operations are great for evaluating mathematical formulae. For instance, here's the formula for a damped spring:</p><p><img src="vectors_matrices_eq50296.png" alt="$y = e^{-0.2t}sin(t)$"></p><p>Let's say we wanted to evaluate <img src="vectors_matrices_eq44020.png" alt="$y$"> for <img src="vectors_matrices_eq07064.png" alt="$t$"> between 0 and 5:</p><pre class="codeinput">t = 0:0.1:5;
+y = exp(-0.2*t).*sin(t);
+disp(y)
+</pre><pre class="codeoutput">  Columns 1 through 7
+
+         0    0.0979    0.1909    0.2783    0.3595    0.4338    0.5008
+
+  Columns 8 through 14
+
+    0.5601    0.6113    0.6543    0.6889    0.7152    0.7332    0.7430
+
+  Columns 15 through 21
+
+    0.7448    0.7390    0.7258    0.7058    0.6794    0.6471    0.6095
+
+  Columns 22 through 28
+
+    0.5672    0.5207    0.4708    0.4180    0.3630    0.3065    0.2491
+
+  Columns 29 through 35
+
+    0.1913    0.1340    0.0774    0.0224   -0.0308   -0.0815   -0.1295
+
+  Columns 36 through 42
+
+   -0.1742   -0.2154   -0.2528   -0.2861   -0.3153   -0.3401   -0.3604
+
+  Columns 43 through 49
+
+   -0.3763   -0.3877   -0.3947   -0.3974   -0.3960   -0.3906   -0.3814
+
+  Columns 50 through 51
+
+   -0.3687   -0.3528
+
+</pre><pre class="codeinput">plot(t, y)
+</pre><img vspace="5" hspace="5" src="vectors_matrices_02.png" alt=""> <p>Finally, and this is a big idea: The "normal" <tt>*</tt> and <tt>^</tt> operators (i.e., without a <i>dot</i>) are reserved for multiplication and exponentiation in a <i>linear algebra</i> context. You can only multiply a matrix of size [M, N] by a matrix sized [N, P] (the number of columns of the first must equal the number of rows of the second). See:</p><p>https://www.youtube.com/watch?v=XZ3HXhvqa8g</p><p>to understand Matrix Multiplication</p><pre class="codeinput">A = [3, 4; 1, 2; 0, 1];
+B = [1, 4, 5; 2, 0, 3.];
+
+disp(A*B)
+</pre><pre class="codeoutput">    11    12    27
+     5     4    11
+     2     0     3
+
+</pre><pre class="codeinput">b = [1; 2];
+disp(A*b)
+</pre><pre class="codeoutput">    11
+     5
+     2
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Copyright 2015, Ashwin Srinath, All Rights Reserved
+% LICENSE: MIT (http://opensource.org/licenses/MIT)
+% (TL;DR) 
+% You can do whatever you want
+% with this code
+% as long as you include the original copyright
+% and license in their original sources.
+% I don't guarantee that
+% any of this code
+% serves any purpose whatsoever.
+%% Introduction
+% In this document, we'll learn about Vectors and
+% Matrices, the fundamental ways to organize data in MATLAB
+
+%% Vectors
+% So far, we have used MATLAB to compute with numbers,
+% i.e., _scalars_:
+
+a = 2*5*sin(pi/4);
+b = log(a);
+disp(b)
+
+%%
+% You shouldn't be too impressed with any of this,
+% it's nothing we can't do with an ordinary calculator.
+% The _true_ power of MATLAB lies in its ability
+% to operate on *vectors*. Here's how to create
+% a vector:
+
+temp = [14, 21, 27, 32, 37, 37, 34, 27];
+disp(temp)
+
+%%
+% Vectors are created by putting a list of comma-separated
+% values in square brackets.
+% In our example, we _assign_ our vector to the name
+% |temp| (the rules for vector assignment
+% are the same as for scalars).
+% We then _inspect_ the value of |temp| using
+% |disp|. MATLAB gives us a pretty representation
+% of our vector.
+%
+% Vectors are useful for a lot of different things.
+% For instance, they can be used to hold a bunch
+% of related values, e.g., readings from an experiment,
+% student grades, patient heights, etc.,
+% Incidentally, _our_ vector, |temp|, holds Google's
+% prediction for the minimum temperature for the
+% next eight days (that's why we named it |temp|!)
+
+%%
+% We can get the length or "size" of a vector,
+% using |length|:
+length(temp)
+
+%%
+% Having our values in a vector is really useful.
+% We can compute the mean temperature:
+mean(temp)
+
+%%
+% And even the maximum or minimum
+max(temp)
+
+%%
+min(temp)
+
+%% 
+% We can even visualize how the minimum temperature
+% will vary:
+%%
+plot(temp)
+
+%%
+% We hope you're convinced that MATLAB is a bit
+% more useful than your average calculator!
+% But lets move on and learn more about vectors:
+
+%% Accessing Vector Values
+%
+% As we discussed, we can create vectors by
+% putting comma-separated values in square
+% brackets:
+temp = [14, 21, 27, 32, 37, 37, 34, 27];
+
+%%
+% We often want to access specific values of 
+% a vector. For instance, let's say we want
+% only the temperature on the third day:
+
+temp(3)
+
+%%
+% Here, |3| is called an _index_.
+
+%%
+% And don't forget, you can assign the
+% extracted value to
+% a variable:
+
+temp_third = temp(3);
+disp(temp_third)
+
+%%
+% You can also _change_ the value
+% you access. Let's say we made
+% a mistake in recording the temperature
+% for the third day, to fix it:
+
+temp(3) = 30.0;
+
+%%
+% Remember, in commands like this,
+% we're not assigning the value
+% on the right to a new name, we're
+% _modifying_ an existing variable.
+% This is also valid (and extremely useful!)
+% use of the assignment (|=|) operator.
+
+%%
+% We can also get vector values for a 
+% _range_ of indices. For this,
+% we use the colon (|:|) operator
+% For instance, if
+% we wanted the temperatures for days
+% 2 through 6:
+
+temp(2:6)
+
+%%
+% The answer is, of course, a vector.
+% It's a "slice" of our original
+% vector |temp|.
+
+%%
+% The |end| keyword is useful when
+% we want to refer to the last index.
+% Examine how |end| is used in the
+% following commands:
+
+temp(end)
+
+%%
+temp(4:end)
+
+%%
+% Finally, you can provide a
+% _stride_ to the range of indices.
+% For instance, if we want
+% every second temperature from day 1
+% to day 7, we  can do
+
+temp(1:2:7)
+
+%%
+% or if we want every _third_ temperature
+% from day 1 to day 8:
+
+temp(1:3:8)
+
+%%
+% The middle index is a _stride_ or _step_.
+% The indices |(1:3:8)| can be read as
+% "1 through 8 in steps of 3"
+
+%%
+% Strides can be negative also, and
+% useful when we want to get values
+% "backwards". Here is how to get
+% the temperatures from day 6 to
+% day 2, backwards:
+
+temp(6:-1:2)
+
+%%
+% To compare, here are the "forward" values:
+
+temp(2:6)
+
+%% Sequences
+% Here's an example of how we've been
+% constructing vectors so far:
+
+v = [1.2, 3.2, 7.6, 8.8];
+
+%%
+% Often, we want to _generate a
+% sequence_ of numbers. For examaple, if we want
+% the sequence 1,2,3,4,...10, we can
+% do:
+
+seq = 1:10;
+disp(seq)
+
+%%
+% Note that this usage of the
+% colon (|:|) operator here is different from the
+% previous section. Make sure you understand
+% this difference before moving on.
+
+%%
+% Of course, we don't have to start with |1|:
+
+seq = 2:8;
+disp(seq)
+
+%%
+% And our sequence can have a stride:
+
+seq = 2:4:20;
+disp(seq)
+
+%%
+% And, yes, strides can be negative:
+
+seq = 18:-5:-10;
+disp(seq)
+
+%%
+% We can even generate sequences of
+% floating-point ("decimal") numbers:
+
+seq = 0.5:0.2:2.5;
+disp(seq)
+
+%%
+seq = 1.0:-0.1:0;
+disp(seq)
+
+%% Row and Column Vectors
+%
+% Vectors can be "long" or "tall". So far, we've
+% been working with "long" vectors:
+
+yoshi_times = [22.2, 21.7, 23.4, 32.6, 18.0];
+disp(yoshi_times)
+
+%%
+% We can also create "tall" vectors:
+
+koopa_times = [22.4; 23.6; 24.4; 20.9; 19.0];
+disp(koopa_times)
+
+%%
+% We can switch between "long" and "tall" vectors
+% using the _transpose_ (|'|) operator:
+
+disp(yoshi_times')
+
+%%
+% The length of |yoshi_times| and |yoshi_times'|
+% is the same:
+
+length(yoshi_times)
+
+%%
+length(yoshi_times')
+
+%%
+% But they have different _sizes_:
+
+size(yoshi_times)
+
+%%
+
+size(yoshi_times')
+
+%%
+% "Long" vectors are called row vectors,
+% and "tall" vectors are called column vectors.
+% Remember, columns (in architecture), are "tall".
+% They are both specific cases of _matrices_, which
+% we will study in the following section.
+
+
+%% Matrices
+% So far, we've dealt with _scalars_ (single numbers),
+% and _vectors_ (a collection of scalars):
+yoshi_times = [22.2, 21.7, 23.4, 32.6, 18.0];
+koopa_times = [22.4, 23.6, 24.4, 20.9, 19.0];
+
+%%
+% |yoshi_times| and |koopa_times| record the
+% lap times of "yoshi" and "koopa" in a
+% five-lap race.
+
+%%
+% We can "stack" these timings like so:
+
+race_times = [yoshi_times; koopa_times];
+disp(race_times)
+
+%%
+% What we get is a sort of "table" of numbers.
+% The first row is |koopa_times| and
+% the second is |yoshi_times|. This "table"
+% is called a _matrix_.
+% Let's check it's |size|:
+
+size(race_times)
+
+%%
+% MATLAB reports the "size" of a matrix
+% as [rows, columns]. The first number
+% indicates the number of rows, and the second
+% indicates the number of columns.
+
+%% Accesing Matrix Values
+%
+% To experiment with matrices, let's create
+% a "magic matrix of 10 rows and 10 columns":
+% 
+M = magic(10);
+
+%% 
+% As with vectors, we often want
+% to extract a single value from a matrix.
+% We do this by supplying _two_ indices:
+
+M(2, 4)
+
+%%
+% The above command selects the value
+% sitting on the second row and fourth column
+% of our matrix
+
+%%
+% We can also extract an entire
+% row of values:
+
+M(3, :)
+
+%%
+% The index |(3, :)| selects the values
+% sitting on the _third_ row, and _all_ columns -
+% effectively, the entire row
+% 
+% What if we only wanted a handful of values
+% from the third row?
+
+M(3, 2:6)
+
+%%
+% The index |(3, 2:6)| selects the
+% values sitting on the third row, and
+% columns 2 through 6.
+
+%%
+% We can also select _multiple_ rows:
+
+M(1:4, :)
+
+%%
+% Or columns:
+M(:, 2:7)
+
+%%
+% To select a _submatrix_, we provide
+% ranges in both dimensions:
+M(4:6, 5:7)
+
+%%
+% We can also provide strides
+% in either dimension:
+M(2:2:end, 5)
+
+%%
+% Again, we can use the assignment
+% operator to _modify_ rows or columns:
+
+M(:, 2:7) = 0.0;
+disp(M)
+
+%%
+% Let's go back to the data
+% from our kart-race:
+yoshi_times = [22.2, 21.7, 23.4, 32.6, 18.0];
+koopa_times = [22.4, 23.6, 24.4, 20.9, 19.0];
+race_times = [yoshi_times; koopa_times]
+%%
+% 1. Displace race_times with the lap timings as columns (not rows)
+% 2. Extract only |yoshi|'s lap times
+% 3. Extract both |yoshi| and |koopa|'s lap times for lap 4
+% 4. sum(v) sums the element of a *vector*, can you
+% figure out who won the race?
+
+%% Generating Matrices
+% We've seen that we can create
+% matrices by hand:
+M = [1, 2, 3; 5, 6.2, 8; 2, 2, 2];
+
+%%
+% And we've used |magic| like so:
+
+M = magic(5);
+
+%%
+% There are other _functions_ like |magic|
+% that we can use to generate matrices.
+zeros(5)
+
+%%
+ones(6)
+
+%%
+ones(3,2)
+
+%%
+eye(5)
+
+%%
+eye(5) + ones(5)
+
+%%
+rand(3,5)
+
+%% Matrix Dimensions
+% As we saw, |size(M)| gives
+% the number of rows and columns of
+% a matrix, i.e., its _dimensions_.
+% As with vectors, we can use
+% the transpose operator (|'|)
+% to flip a matrix's dimensions:
+
+x = rand(2, 5);
+disp(x)
+
+%%
+disp(x')
+
+%% Arithmetic with Vectors and Matrices
+
+%%
+% Vectors and Matrices can be multiplied
+% freely with scalars:
+
+M = ones(5);
+M = 2*M;
+disp(M)
+
+%%
+t = 0:0.1:1;
+m = -0.2*t;
+disp(m)
+
+%%
+% To do *elementwise* operations between
+% to vectors and matrices, they need to
+% be the same shape:
+
+%%
+a = [0.6, 0.2, 0.8];
+b = [2, 3, 2];
+c = a + b;
+disp(c)
+
+%%
+c = a - b
+
+%%
+c = a.*b
+
+%%
+c = a.^b
+
+%%
+M = ones(3)*2;
+B = rand(3);
+disp(B)
+
+%%
+C = M+B
+
+%%
+C = M.*B
+
+%%
+% Elementwise multiplication and exponentiation
+% are done using the |.*| and |.^| operator
+%
+% Again, elementwise operations don't work
+% for incompatible dimensions/sizes:
+%
+%  a = [0.6, 0.2, 0.8];
+%  b = [1., 2.]
+%  a.*b
+%
+%  a = [0.6, 0.2, 0.8];
+%  b = [1., 2., 1.]';
+%  a.*b
+
+%%
+% Elementwise operations are great for
+% evaluating mathematical formulae.
+% For instance, here's the formula
+% for a damped spring:
+%
+% $y = e^{-0.2t}sin(t)$
+%
+% Let's say we wanted to evaluate
+% $y$ for $t$ between 0 and 5:
+
+t = 0:0.1:5;
+y = exp(-0.2*t).*sin(t);
+disp(y)
+
+%%
+plot(t, y)
+
+%%
+% Finally, and this is a big idea: 
+% The "normal" |*| and |^| operators
+% (i.e., without a _dot_) are reserved
+% for multiplication and exponentiation
+% in a _linear algebra_ context.
+% You can only multiply a matrix of
+% size [M, N] by a matrix sized [N, P]
+% (the number of columns of the first
+% must equal the number of rows of the
+% second). See:
+% 
+% https://www.youtube.com/watch?v=XZ3HXhvqa8g
+%
+% to understand Matrix Multiplication
+
+A = [3, 4; 1, 2; 0, 1];
+B = [1, 4, 5; 2, 0, 3.];
+
+disp(A*B)
+
+%%
+b = [1; 2];
+disp(A*b)
+
+
+##### SOURCE END #####
+--></body></html>
