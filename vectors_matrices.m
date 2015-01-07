@@ -1,5 +1,5 @@
 % Copyright 2015, Ashwin Srinath, All Rights Reserved
-% LICENSE: MIT
+% LICENSE: MIT (http://opensource.org/licenses/MIT)
 % (TL;DR) 
 % You can do whatever you want
 % with this code
