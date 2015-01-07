@@ -66,7 +66,11 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
   </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Introduction</a></li><li><a href="#3">Vectors</a></li><li><a href="#13">Accessing Vector Values</a></li><li><a href="#28">Sequences</a></li><li><a href="#36">Row and Column Vectors</a></li><li><a href="#44">Matrices</a></li><li><a href="#49">Accesing Matrix Values</a></li><li><a href="#62">Generating Matrices</a></li><li><a href="#70">Matrix Dimensions</a></li><li><a href="#72">Arithmetic with Vectors and Matrices</a></li></ul></div><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
+<<<<<<< HEAD
 <span class="comment">% LICENSE: MIT</span>
+=======
+<span class="comment">% LICENSE: MIT (http://opensource.org/licenses/MIT)</span>
+>>>>>>> master
 <span class="comment">% (TL;DR)</span>
 <span class="comment">% You can do whatever you want</span>
 <span class="comment">% with this code</span>
@@ -75,7 +79,11 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <span class="comment">% I don't guarantee that</span>
 <span class="comment">% any of this code</span>
 <span class="comment">% serves any purpose whatsoever.</span>
+<<<<<<< HEAD
 </pre><h2>Introduction<a name="2"></a></h2><p>In this document, we'll learn about Vectors and Matrices, the fundamental types of data in MATLAB</p><h2>Vectors<a name="3"></a></h2><p>So far, we have used MATLAB to compute with numbers, i.e., <i>scalars</i>:</p><pre class="codeinput">a = 2*5*sin(pi/4);
+=======
+</pre><h2>Introduction<a name="2"></a></h2><p>In this document, we'll learn about Vectors and Matrices, the fundamental ways to organize data in MATLAB</p><h2>Vectors<a name="3"></a></h2><p>So far, we have used MATLAB to compute with numbers, i.e., <i>scalars</i>:</p><pre class="codeinput">a = 2*5*sin(pi/4);
+>>>>>>> master
 b = log(a);
 disp(b)
 </pre><pre class="codeoutput">    1.9560
@@ -299,7 +307,29 @@ ans =
     12    94    96    78    35    37
     18   100    77    84    36    43
 
+<<<<<<< HEAD
 </pre><p>Again, we can use the assignment operator to <i>modify</i> a row or column:</p><pre class="codeinput">M(:, 2:7) = 0.0;
+=======
+</pre><p>To select a <i>submatrix</i>, we provide ranges in both dimensions:</p><pre class="codeinput">M(4:6, 5:7)
+</pre><pre class="codeoutput">
+ans =
+
+     3    60    62
+     9    61    68
+    90    42    49
+
+</pre><p>We can also provide strides in either dimension:</p><pre class="codeinput">M(2:2:end, 5)
+</pre><pre class="codeoutput">
+ans =
+
+    16
+     3
+    90
+    97
+    84
+
+</pre><p>Again, we can use the assignment operator to <i>modify</i> rows or columns:</p><pre class="codeinput">M(:, 2:7) = 0.0;
+>>>>>>> master
 disp(M)
 </pre><pre class="codeoutput">    92     0     0     0     0     0     0    51    58    40
     98     0     0     0     0     0     0    57    64    41
@@ -312,6 +342,7 @@ disp(M)
     10     0     0     0     0     0     0    44    46    53
     11     0     0     0     0     0     0    50    27    59
 
+<<<<<<< HEAD
 </pre><p>To select a <i>submatrix</i>, we provide ranges in both dimensions:</p><pre class="codeinput">M(4:6, 5:7)
 </pre><pre class="codeoutput">
 ans =
@@ -321,6 +352,9 @@ ans =
      0     0     0
 
 </pre><p>We can also provide strides in either dimension:</p><p>Let's go back to the data from our kart-race:</p><pre class="codeinput">yoshi_times = [22.2, 21.7, 23.4, 32.6, 18.0];
+=======
+</pre><p>Let's go back to the data from our kart-race:</p><pre class="codeinput">yoshi_times = [22.2, 21.7, 23.4, 32.6, 18.0];
+>>>>>>> master
 koopa_times = [22.4, 23.6, 24.4, 20.9, 19.0];
 race_times = [yoshi_times; koopa_times]
 </pre><pre class="codeoutput">
@@ -329,6 +363,7 @@ race_times =
    22.2000   21.7000   23.4000   32.6000   18.0000
    22.4000   23.6000   24.4000   20.9000   19.0000
 
+<<<<<<< HEAD
 </pre><p>1. Displace race_times with the lap timings as columns (not rows) 2. Extract only <tt>yoshi</tt>'s lap times 3. Extract both <tt>yoshi</tt> and <tt>koopa</tt>'s lap times for lap 4 4. sum(v) sums the element of a <b>vector</b>, can you figure out who won the race?</p><pre class="codeinput">M(2:2:end, 5)
 </pre><pre class="codeoutput">
 ans =
@@ -340,6 +375,9 @@ ans =
      0
 
 </pre><h2>Generating Matrices<a name="62"></a></h2><p>We've seen that we can create matrices by hand:</p><pre class="codeinput">M = [1, 2, 3; 5, 6.2, 8; 2, 2, 2];
+=======
+</pre><p>1. Displace race_times with the lap timings as columns (not rows) 2. Extract only <tt>yoshi</tt>'s lap times 3. Extract both <tt>yoshi</tt> and <tt>koopa</tt>'s lap times for lap 4 4. sum(v) sums the element of a <b>vector</b>, can you figure out who won the race?</p><h2>Generating Matrices<a name="62"></a></h2><p>We've seen that we can create matrices by hand:</p><pre class="codeinput">M = [1, 2, 3; 5, 6.2, 8; 2, 2, 2];
+>>>>>>> master
 </pre><p>And we've used <tt>magic</tt> like so:</p><pre class="codeinput">M = magic(5);
 </pre><p>There are other <i>functions</i> like <tt>magic</tt> that we can use to generate matrices.</p><pre class="codeinput">zeros(5)
 </pre><pre class="codeoutput">
@@ -394,6 +432,7 @@ ans =
 </pre><pre class="codeoutput">
 ans =
 
+<<<<<<< HEAD
     0.0760    0.1839    0.0497    0.4909    0.9001
     0.2399    0.2400    0.9027    0.4893    0.3692
     0.1233    0.4173    0.9448    0.3377    0.1112
@@ -409,6 +448,23 @@ disp(x)
     0.0965    0.1320
     0.9421    0.9561
     0.5752    0.0598
+=======
+    0.0971    0.3171    0.4387    0.7952    0.4456
+    0.8235    0.9502    0.3816    0.1869    0.6463
+    0.6948    0.0344    0.7655    0.4898    0.7094
+
+</pre><h2>Matrix Dimensions<a name="70"></a></h2><p>As we saw, <tt>size(M)</tt> gives the number of rows and columns of a matrix, i.e., its <i>dimensions</i>. As with vectors, we can use the transpose operator (<tt>'</tt>) to flip a matrix's dimensions:</p><pre class="codeinput">x = rand(2, 5);
+disp(x)
+</pre><pre class="codeoutput">    0.7547    0.6797    0.1626    0.4984    0.3404
+    0.2760    0.6551    0.1190    0.9597    0.5853
+
+</pre><pre class="codeinput">disp(x')
+</pre><pre class="codeoutput">    0.7547    0.2760
+    0.6797    0.6551
+    0.1626    0.1190
+    0.4984    0.9597
+    0.3404    0.5853
+>>>>>>> master
 
 </pre><h2>Arithmetic with Vectors and Matrices<a name="72"></a></h2><p>Vectors and Matrices can be multiplied freely with scalars:</p><pre class="codeinput">M = ones(5);
 M = 2*M;
@@ -457,25 +513,43 @@ c =
 </pre><pre class="codeinput">M = ones(3)*2;
 B = rand(3);
 disp(B)
+<<<<<<< HEAD
 </pre><pre class="codeoutput">    0.2348    0.0154    0.6491
     0.3532    0.0430    0.7317
     0.8212    0.1690    0.6477
+=======
+</pre><pre class="codeoutput">    0.2238    0.5060    0.9593
+    0.7513    0.6991    0.5472
+    0.2551    0.8909    0.1386
+>>>>>>> master
 
 </pre><pre class="codeinput">C = M+B
 </pre><pre class="codeoutput">
 C =
 
+<<<<<<< HEAD
     2.2348    2.0154    2.6491
     2.3532    2.0430    2.7317
     2.8212    2.1690    2.6477
+=======
+    2.2238    2.5060    2.9593
+    2.7513    2.6991    2.5472
+    2.2551    2.8909    2.1386
+>>>>>>> master
 
 </pre><pre class="codeinput">C = M.*B
 </pre><pre class="codeoutput">
 C =
 
+<<<<<<< HEAD
     0.4696    0.0308    1.2982
     0.7063    0.0860    1.4634
     1.6424    0.3380    1.2955
+=======
+    0.4476    1.0119    1.9186
+    1.5025    1.3982    1.0944
+    0.5102    1.7818    0.2772
+>>>>>>> master
 
 </pre><p>Elementwise multiplication and exponentiation are done using the <tt>.*</tt> and <tt>.^</tt> operator</p><p>Again, elementwise operations don't work for incompatible dimensions/sizes:</p><pre>a = [0.6, 0.2, 0.8];
 b = [1., 2.]
@@ -534,7 +608,11 @@ disp(A*b)
 </pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 % Copyright 2015, Ashwin Srinath, All Rights Reserved
+<<<<<<< HEAD
 % LICENSE: MIT
+=======
+% LICENSE: MIT (http://opensource.org/licenses/MIT)
+>>>>>>> master
 % (TL;DR) 
 % You can do whatever you want
 % with this code
@@ -545,7 +623,11 @@ disp(A*b)
 % serves any purpose whatsoever.
 %% Introduction
 % In this document, we'll learn about Vectors and
+<<<<<<< HEAD
 % Matrices, the fundamental types of data in MATLAB
+=======
+% Matrices, the fundamental ways to organize data in MATLAB
+>>>>>>> master
 
 %% Vectors
 % So far, we have used MATLAB to compute with numbers,
@@ -890,6 +972,7 @@ M(1:4, :)
 M(:, 2:7)
 
 %%
+<<<<<<< HEAD
 % Again, we can use the assignment
 % operator to _modify_ a row or column:
 
@@ -900,11 +983,26 @@ disp(M)
 % To select a _submatrix_, we provide
 % ranges in both dimensions:
 
+=======
+% To select a _submatrix_, we provide
+% ranges in both dimensions:
+>>>>>>> master
 M(4:6, 5:7)
 
 %%
 % We can also provide strides
 % in either dimension:
+<<<<<<< HEAD
+=======
+M(2:2:end, 5)
+
+%%
+% Again, we can use the assignment
+% operator to _modify_ rows or columns:
+
+M(:, 2:7) = 0.0;
+disp(M)
+>>>>>>> master
 
 %%
 % Let's go back to the data
@@ -919,8 +1017,11 @@ race_times = [yoshi_times; koopa_times]
 % 4. sum(v) sums the element of a *vector*, can you
 % figure out who won the race?
 
+<<<<<<< HEAD
 M(2:2:end, 5)
 
+=======
+>>>>>>> master
 %% Generating Matrices
 % We've seen that we can create
 % matrices by hand:
