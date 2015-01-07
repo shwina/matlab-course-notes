@@ -10,7 +10,7 @@
 % serves any purpose whatsoever.
 %% Introduction
 % In this document, we'll learn about Vectors and
-% Matrices, the fundamental types of data in MATLAB
+% Matrices, the fundamental ways to organize data in MATLAB
 
 %% Vectors
 % So far, we have used MATLAB to compute with numbers,
