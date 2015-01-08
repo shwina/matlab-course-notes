@@ -490,22 +490,18 @@ C = M.*B
 %  a.*b
 
 %%
-% Elementwise operations are great for
-% evaluating mathematical formulae.
-% For instance, here's the formula
-% for a damped spring:
-%
-% $y = e^{-0.2t}sin(t)$
-%
-% Let's say we wanted to evaluate
-% $y$ for $t$ between 0 and 5:
-
-t = 0:0.1:5;
-y = exp(-0.2*t).*sin(t);
-disp(y)
+% Remember that a mathematical function 
+% acts *elementwise* on vectors and matrices.
+% In other words, it is applied to *every*
+% element:
+vec = [0, pi/6, pi/3, pi/4];
+sines = sin(vec);
+disp(sines)
 
 %%
-plot(t, y)
+mat = [0, 4, 16; 121, 49, 9];
+square_roots = sqrt(mat);
+disp(square_roots)
 
 %%
 % Finally, and this is a big idea: 
@@ -532,3 +528,93 @@ disp(A*B)
 b = [1; 2];
 disp(A*b)
 
+
+%% (optional) Graphing with Vectors
+
+%%
+% Elementwise operations are great for
+% evaluating mathematical formulae.
+% For instance, consider the example
+% of a block attached to a spring:
+
+%%
+% <html>
+% <img
+% src="http://upload.wikimedia.org/wikipedia/commons/2/2b/Damped_spring.gif">
+% </html>
+
+%%
+% When we give the block a little pull and
+% let go of it, it's displacement with
+% time ($t$) will
+% follow this formula:
+%
+% $y = e^{-0.2t}sin(t)$
+%
+% Let's say we want to graph this displacement
+% $y$ for $t$ between 0 and 20 seconds,
+% i.e., we want to see how the block
+% behaves for 20 seconds after we let
+% go of it.
+
+%%
+% We start with creating a vector
+% |t|, that holds several values
+% starting from |0| to |20|:
+
+t = 0:0.1:20;
+
+%%
+% For each value in |t|, we want to compute
+% the corresponding value of |y|. We know that:
+%
+%  sin(t)
+%
+% will compute the sine of each value in |t|, and that
+%
+%  -0.2*t
+%
+% will multiply each value in |t| by |-0.2|, and that
+%
+%  exp(-0.2*t)
+%
+% will apply the "exponential" function to
+% each value in |-0.2*t|.
+%
+% Both |sin(t)| and exp(-0.2*t) 
+% will be vectors of the *same length* as
+% |t|.
+%
+% Finally, we want the elementwise or
+% term-by-term product of those two vectors:
+% so we can do, in a single line:
+y = exp(-0.2*t) .* sin(t);
+
+%%
+% You can check that |y| is the same length as
+% |t|:
+disp(length(y))
+disp(length(t))
+
+%%
+% And to check that the solution is correct,
+% you can plot |y| v/s |t| in a graph:
+plot(t, y)
+
+%%
+% As you would expect, the graph shows that
+% the block moves up and down, but with
+% decreasing "amplitude" or
+% strength. This is exactly what you would
+% expect to happen to a real block attached
+% to a spring.
+
+%%
+% Recall that we started with the following vector
+% for t:
+%
+%  t = 0:0.1:20;
+% 
+% Can you explain why we used such a small "stride"
+% or spacing for |t|, i.e., why did we need
+% the vector |t| to have so many elements/values?

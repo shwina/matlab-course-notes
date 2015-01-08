@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>vectors_matrices</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-01-07"><meta name="DC.source" content="vectors_matrices.m"><style type="text/css">
+      --><title>vectors_matrices</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-01-08"><meta name="DC.source" content="vectors_matrices.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Introduction</a></li><li><a href="#3">Vectors</a></li><li><a href="#13">Accessing Vector Values</a></li><li><a href="#28">Sequences</a></li><li><a href="#36">Row and Column Vectors</a></li><li><a href="#44">Matrices</a></li><li><a href="#49">Accesing Matrix Values</a></li><li><a href="#62">Generating Matrices</a></li><li><a href="#70">Matrix Dimensions</a></li><li><a href="#72">Arithmetic with Vectors and Matrices</a></li></ul></div><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Introduction</a></li><li><a href="#3">Vectors</a></li><li><a href="#13">Accessing Vector Values</a></li><li><a href="#28">Sequences</a></li><li><a href="#36">Row and Column Vectors</a></li><li><a href="#44">Matrices</a></li><li><a href="#49">Accesing Matrix Values</a></li><li><a href="#62">Generating Matrices</a></li><li><a href="#70">Matrix Dimensions</a></li><li><a href="#72">Arithmetic with Vectors and Matrices</a></li><li><a href="#88">(optional) Graphing with Vectors</a></li></ul></div><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
 <span class="comment">% LICENSE: MIT (http://opensource.org/licenses/MIT)</span>
 <span class="comment">% (TL;DR)</span>
 <span class="comment">% You can do whatever you want</span>
@@ -394,21 +394,21 @@ ans =
 </pre><pre class="codeoutput">
 ans =
 
-    0.1493    0.2543    0.9293    0.2511    0.3517
-    0.2575    0.8143    0.3500    0.6160    0.8308
-    0.8407    0.2435    0.1966    0.4733    0.5853
+    0.9516    0.7379    0.5479    0.9831    0.6663
+    0.9203    0.2691    0.9427    0.3015    0.5391
+    0.0527    0.4228    0.4177    0.7011    0.6981
 
 </pre><h2>Matrix Dimensions<a name="70"></a></h2><p>As we saw, <tt>size(M)</tt> gives the number of rows and columns of a matrix, i.e., its <i>dimensions</i>. As with vectors, we can use the transpose operator (<tt>'</tt>) to flip a matrix's dimensions:</p><pre class="codeinput">x = rand(2, 5);
 disp(x)
-</pre><pre class="codeoutput">    0.5497    0.2858    0.7537    0.5678    0.0540
-    0.9172    0.7572    0.3804    0.0759    0.5308
+</pre><pre class="codeoutput">    0.6665    0.1280    0.1711    0.5612    0.6692
+    0.1781    0.9991    0.0326    0.8819    0.1904
 
 </pre><pre class="codeinput">disp(x')
-</pre><pre class="codeoutput">    0.5497    0.9172
-    0.2858    0.7572
-    0.7537    0.3804
-    0.5678    0.0759
-    0.0540    0.5308
+</pre><pre class="codeoutput">    0.6665    0.1781
+    0.1280    0.9991
+    0.1711    0.0326
+    0.5612    0.8819
+    0.6692    0.1904
 
 </pre><h2>Arithmetic with Vectors and Matrices<a name="72"></a></h2><p>Vectors and Matrices can be multiplied freely with scalars:</p><pre class="codeinput">M = ones(5);
 M = 2*M;
@@ -457,67 +457,42 @@ c =
 </pre><pre class="codeinput">M = ones(3)*2;
 B = rand(3);
 disp(B)
-</pre><pre class="codeoutput">    0.7792    0.5688    0.3371
-    0.9340    0.4694    0.1622
-    0.1299    0.0119    0.7943
+</pre><pre class="codeoutput">    0.3689    0.1564    0.3763
+    0.4607    0.8555    0.1909
+    0.9816    0.6448    0.4283
 
 </pre><pre class="codeinput">C = M+B
 </pre><pre class="codeoutput">
 C =
 
-    2.7792    2.5688    2.3371
-    2.9340    2.4694    2.1622
-    2.1299    2.0119    2.7943
+    2.3689    2.1564    2.3763
+    2.4607    2.8555    2.1909
+    2.9816    2.6448    2.4283
 
 </pre><pre class="codeinput">C = M.*B
 </pre><pre class="codeoutput">
 C =
 
-    1.5583    1.1376    0.6742
-    1.8680    0.9388    0.3244
-    0.2598    0.0238    1.5886
+    0.7378    0.3128    0.7525
+    0.9215    1.7110    0.3818
+    1.9633    1.2895    0.8565
 
 </pre><p>Elementwise multiplication and exponentiation are done using the <tt>.*</tt> and <tt>.^</tt> operator</p><p>Again, elementwise operations don't work for incompatible dimensions/sizes:</p><pre>a = [0.6, 0.2, 0.8];
 b = [1., 2.]
 a.*b</pre><pre>a = [0.6, 0.2, 0.8];
 b = [1., 2., 1.]';
-a.*b</pre><p>Elementwise operations are great for evaluating mathematical formulae. For instance, here's the formula for a damped spring:</p><p><img src="vectors_matrices_eq50296.png" alt="$y = e^{-0.2t}sin(t)$"></p><p>Let's say we wanted to evaluate <img src="vectors_matrices_eq44020.png" alt="$y$"> for <img src="vectors_matrices_eq07064.png" alt="$t$"> between 0 and 5:</p><pre class="codeinput">t = 0:0.1:5;
-y = exp(-0.2*t).*sin(t);
-disp(y)
-</pre><pre class="codeoutput">  Columns 1 through 7
+a.*b</pre><p>Remember that a mathematical function acts <b>elementwise</b> on vectors and matrices. In other words, it is applied to <b>every</b> element:</p><pre class="codeinput">vec = [0, pi/6, pi/3, pi/4];
+sines = sin(vec);
+disp(sines)
+</pre><pre class="codeoutput">         0    0.5000    0.8660    0.7071
 
-         0    0.0979    0.1909    0.2783    0.3595    0.4338    0.5008
+</pre><pre class="codeinput">mat = [0, 4, 16; 121, 49, 9];
+square_roots = sqrt(mat);
+disp(square_roots)
+</pre><pre class="codeoutput">     0     2     4
+    11     7     3
 
-  Columns 8 through 14
-
-    0.5601    0.6113    0.6543    0.6889    0.7152    0.7332    0.7430
-
-  Columns 15 through 21
-
-    0.7448    0.7390    0.7258    0.7058    0.6794    0.6471    0.6095
-
-  Columns 22 through 28
-
-    0.5672    0.5207    0.4708    0.4180    0.3630    0.3065    0.2491
-
-  Columns 29 through 35
-
-    0.1913    0.1340    0.0774    0.0224   -0.0308   -0.0815   -0.1295
-
-  Columns 36 through 42
-
-   -0.1742   -0.2154   -0.2528   -0.2861   -0.3153   -0.3401   -0.3604
-
-  Columns 43 through 49
-
-   -0.3763   -0.3877   -0.3947   -0.3974   -0.3960   -0.3906   -0.3814
-
-  Columns 50 through 51
-
-   -0.3687   -0.3528
-
-</pre><pre class="codeinput">plot(t, y)
-</pre><img vspace="5" hspace="5" src="vectors_matrices_02.png" alt=""> <p>Finally, and this is a big idea: The "normal" <tt>*</tt> and <tt>^</tt> operators (i.e., without a <i>dot</i>) are reserved for multiplication and exponentiation in a <i>linear algebra</i> context. You can only multiply a matrix of size [M, N] by a matrix sized [N, P] (the number of columns of the first must equal the number of rows of the second). See:</p><p>https://www.youtube.com/watch?v=XZ3HXhvqa8g</p><p>to understand Matrix Multiplication</p><pre class="codeinput">A = [3, 4; 1, 2; 0, 1];
+</pre><p>Finally, and this is a big idea: The "normal" <tt>*</tt> and <tt>^</tt> operators (i.e., without a <i>dot</i>) are reserved for multiplication and exponentiation in a <i>linear algebra</i> context. You can only multiply a matrix of size [M, N] by a matrix sized [N, P] (the number of columns of the first must equal the number of rows of the second). See:</p><p>https://www.youtube.com/watch?v=XZ3HXhvqa8g</p><p>to understand Matrix Multiplication</p><pre class="codeinput">A = [3, 4; 1, 2; 0, 1];
 B = [1, 4, 5; 2, 0, 3.];
 
 disp(A*B)
@@ -531,7 +506,19 @@ disp(A*b)
      5
      2
 
-</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+</pre><h2>(optional) Graphing with Vectors<a name="88"></a></h2><p>Elementwise operations are great for evaluating mathematical formulae. For instance, consider the example of a block attached to a spring:</p><p>
+<img
+src="http://upload.wikimedia.org/wikipedia/commons/2/2b/Damped_spring.gif">
+</p><p>When we give the block a little pull and let go of it, it's displacement with time (<img src="vectors_matrices_eq07064.png" alt="$t$">) will follow this formula:</p><p><img src="vectors_matrices_eq50296.png" alt="$y = e^{-0.2t}sin(t)$"></p><p>Let's say we want to graph this displacement <img src="vectors_matrices_eq44020.png" alt="$y$"> for <img src="vectors_matrices_eq07064.png" alt="$t$"> between 0 and 20 seconds, i.e., we want to see how the block behaves for 20 seconds after we let go of it.</p><p>We start with creating a vector <tt>t</tt>, that holds several values starting from <tt>0</tt> to <tt>20</tt>:</p><pre class="codeinput">t = 0:0.1:20;
+</pre><p>For each value in <tt>t</tt>, we want to compute the corresponding value of <tt>y</tt>. We know that:</p><pre>sin(t)</pre><p>will compute the sine of each value in <tt>t</tt>, and that</p><pre>-0.2*t</pre><p>will multiply each value in <tt>t</tt> by <tt>-0.2</tt>, and that</p><pre>exp(-0.2*t)</pre><p>will apply the "exponential" function to each value in <tt>-0.2*t</tt>.</p><p>Both <tt>sin(t)</tt> and exp(-0.2*t) will be vectors of the <b>same length</b> as <tt>t</tt>.</p><p>Finally, we want the elementwise or term-by-term product of those two vectors: so we can do, in a single line:</p><pre class="codeinput">y = exp(-0.2*t) .* sin(t);
+</pre><p>You can check that <tt>y</tt> is the same length as <tt>t</tt>:</p><pre class="codeinput">disp(length(y))
+disp(length(t))
+</pre><pre class="codeoutput">   201
+
+   201
+
+</pre><p>And to check that the solution is correct, you can plot <tt>y</tt> v/s <tt>t</tt> in a graph:</p><pre class="codeinput">plot(t, y)
+</pre><img vspace="5" hspace="5" src="vectors_matrices_02.png" alt=""> <p>As you would expect, the graph shows that the block moves up and down, but with decreasing "amplitude" or strength. This is exactly what you would expect to happen to a real block attached to a spring.</p><p>Recall that we started with the following vector for t:</p><pre>t = 0:0.1:20;</pre><p>Can you explain why we used such a small "stride" or spacing for <tt>t</tt>, i.e., why did we need the vector <tt>t</tt> to have so many elements/values?</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 % Copyright 2015, Ashwin Srinath, All Rights Reserved
 % LICENSE: MIT (http://opensource.org/licenses/MIT)
@@ -1025,22 +1012,18 @@ C = M.*B
 %  a.*b
 
 %%
-% Elementwise operations are great for
-% evaluating mathematical formulae.
-% For instance, here's the formula
-% for a damped spring:
-%
-% $y = e^{-0.2t}sin(t)$
-%
-% Let's say we wanted to evaluate
-% $y$ for $t$ between 0 and 5:
-
-t = 0:0.1:5;
-y = exp(-0.2*t).*sin(t);
-disp(y)
+% Remember that a mathematical function 
+% acts *elementwise* on vectors and matrices.
+% In other words, it is applied to *every*
+% element:
+vec = [0, pi/6, pi/3, pi/4];
+sines = sin(vec);
+disp(sines)
 
 %%
-plot(t, y)
+mat = [0, 4, 16; 121, 49, 9];
+square_roots = sqrt(mat);
+disp(square_roots)
 
 %%
 % Finally, and this is a big idea: 
@@ -1067,6 +1050,96 @@ disp(A*B)
 b = [1; 2];
 disp(A*b)
 
+
+%% (optional) Graphing with Vectors
+
+%%
+% Elementwise operations are great for
+% evaluating mathematical formulae.
+% For instance, consider the example
+% of a block attached to a spring:
+
+%%
+% <html>
+% <img
+% src="http://upload.wikimedia.org/wikipedia/commons/2/2b/Damped_spring.gif">
+% </html>
+
+%%
+% When we give the block a little pull and
+% let go of it, it's displacement with
+% time ($t$) will
+% follow this formula:
+%
+% $y = e^{-0.2t}sin(t)$
+%
+% Let's say we want to graph this displacement
+% $y$ for $t$ between 0 and 20 seconds,
+% i.e., we want to see how the block
+% behaves for 20 seconds after we let
+% go of it.
+
+%%
+% We start with creating a vector
+% |t|, that holds several values
+% starting from |0| to |20|:
+
+t = 0:0.1:20;
+
+%%
+% For each value in |t|, we want to compute
+% the corresponding value of |y|. We know that:
+%
+%  sin(t)
+%
+% will compute the sine of each value in |t|, and that
+%
+%  -0.2*t
+%
+% will multiply each value in |t| by |-0.2|, and that
+%
+%  exp(-0.2*t)
+%
+% will apply the "exponential" function to
+% each value in |-0.2*t|.
+%
+% Both |sin(t)| and exp(-0.2*t) 
+% will be vectors of the *same length* as
+% |t|.
+%
+% Finally, we want the elementwise or
+% term-by-term product of those two vectors:
+% so we can do, in a single line:
+y = exp(-0.2*t) .* sin(t);
+
+%%
+% You can check that |y| is the same length as
+% |t|:
+disp(length(y))
+disp(length(t))
+
+%%
+% And to check that the solution is correct,
+% you can plot |y| v/s |t| in a graph:
+plot(t, y)
+
+%%
+% As you would expect, the graph shows that
+% the block moves up and down, but with
+% decreasing "amplitude" or
+% strength. This is exactly what you would
+% expect to happen to a real block attached
+% to a spring.
+
+%%
+% Recall that we started with the following vector
+% for t:
+%
+%  t = 0:0.1:20;
+% 
+% Can you explain why we used such a small "stride"
+% or spacing for |t|, i.e., why did we need
+% the vector |t| to have so many elements/values?
 
 ##### SOURCE END #####
 --></body></html>
