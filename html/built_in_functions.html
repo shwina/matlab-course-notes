@@ -1,0 +1,519 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>built_in_functions</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-01-11"><meta name="DC.source" content="built_in_functions.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Introduction</a></li><li><a href="#10">Built-in functions</a></li><li><a href="#17">Getting help on a function</a></li><li><a href="#20">Some more functions (and a little philosophy)</a></li></ul></div><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
+<span class="comment">% LICENSE: MIT (http://opensource.org/licenses/MIT)</span>
+<span class="comment">% (TL;DR)</span>
+<span class="comment">% You can do whatever you want</span>
+<span class="comment">% with this code</span>
+<span class="comment">% as long as you include the original copyright</span>
+<span class="comment">% and license in their original sources.</span>
+<span class="comment">% I don't guarantee that</span>
+<span class="comment">% any of this code</span>
+<span class="comment">% serves any purpose whatsoever.</span>
+</pre><h2>Introduction<a name="2"></a></h2><p>In this document, we'll talk about MATLAB's in-built functions, and how and why to use them</p><p>Here are the masses of the planets in our Solar System:</p><pre class="codeinput">planet_masses = [3.3e23, 4.86e24, 5.97e24, 6.41e23, 1.89e27, <span class="keyword">...</span>
+                5.68e26, 8.68e25];
+disp(planet_masses)
+</pre><pre class="codeoutput">   1.0e+27 *
+
+    0.0003    0.0049    0.0060    0.0006    1.8900    0.5680    0.0868
+
+</pre><p>Let's pull out just the mass of Mars:</p><pre class="codeinput">mars_mass = planet_masses(4);
+disp(mars_mass)
+</pre><pre class="codeoutput">   6.4100e+23
+
+</pre><p>Let's check the length of <tt>planet_masses</tt>:</p><pre class="codeinput">length(planet_masses)
+</pre><pre class="codeoutput">
+ans =
+
+     7
+
+</pre><p>Whoops! We missed Neptune and Pluto! Let's <i>append</i> those to <tt>planet_masses</tt>:</p><pre class="codeinput">planet_masses = [planet_masses, 10.2e25, 1.25e22];
+disp(planet_masses)
+</pre><pre class="codeoutput">   1.0e+27 *
+
+  Columns 1 through 7
+
+    0.0003    0.0049    0.0060    0.0006    1.8900    0.5680    0.0868
+
+  Columns 8 through 9
+
+    0.1020    0.0000
+
+</pre><p>Let's try to visualize the relative masses of the planets:</p><pre class="codeinput">bar(planet_masses)
+</pre><img vspace="5" hspace="5" src="built_in_functions_01.png" alt=""> <p>Here's a visualization of the masses of just the Gas Giants:</p><pre class="codeinput">gas_giant_mases = planet_masses(5:8);
+bar(gas_giant_mases)
+</pre><img vspace="5" hspace="5" src="built_in_functions_02.png" alt=""> <p>Remember, when constructing vectors or matrices, commas (<tt>,</tt>) append things horizontally, and semicolons (<tt>;</tt>) append things vertically.</p><h2>Built-in functions<a name="10"></a></h2><p>In the previous handful of commands, we used a lot of MATLAB's in-built <i>functionality</i>, like <tt>disp</tt>, <tt>length</tt> and <tt>bar</tt>. These are are called MATLAB <b>functions</b>, and they are invoked, or <i>called</i> with the following syntax:</p><pre>functionName(input1, input2, ...)</pre><p>Inputs are also called <i>parameters</i> or <i>arguments</i></p><p>In general, functions can accept more than one input:</p><pre class="codeinput">zeros(2, 3)
+</pre><pre class="codeoutput">
+ans =
+
+     0     0     0
+     0     0     0
+
+</pre><p>And we can "catch" what the function returns by assigning it to a variable:</p><pre class="codeinput">zeros_mat = zeros(2, 3);
+disp(zeros_mat)
+</pre><pre class="codeoutput">     0     0     0
+     0     0     0
+
+</pre><p>Some functions can work with variable number of inputs:</p><pre class="codeinput">ones(3)
+</pre><pre class="codeoutput">
+ans =
+
+     1     1     1
+     1     1     1
+     1     1     1
+
+</pre><pre class="codeinput">ones(3,4)
+</pre><pre class="codeoutput">
+ans =
+
+     1     1     1     1
+     1     1     1     1
+     1     1     1     1
+
+</pre><p>Function calls can be part of larger expressions:</p><pre class="codeinput">V = 5*ones(1,3);
+disp(V)
+</pre><pre class="codeoutput">     5     5     5
+
+</pre><p>When a function returns more than one thing, we can assign each output to a separate variable with special syntax like this:</p><pre class="codeinput">B = randi(10, 5, 4);
+[nrows, ncols] = size(B);
+disp(nrows)
+disp(ncols)
+</pre><pre class="codeoutput">     5
+
+     4
+
+</pre><h2>Getting help on a function<a name="17"></a></h2><p>To access a function's <i>documentation</i>, i.e., information on what a functions does, and how to use it, simply run a <tt>help</tt> on that function like so:</p><pre class="codeinput">help <span class="string">size</span>
+</pre><pre class="codeoutput"> SIZE   Size of array.  
+    D = SIZE(X), for M-by-N matrix X, returns the two-element row vector
+    D = [M,N] containing the number of rows and columns in the matrix.
+    For N-D arrays, SIZE(X) returns a 1-by-N vector of dimension lengths.
+    Trailing singleton dimensions are ignored.
+ 
+    [M,N] = SIZE(X) for matrix X, returns the number of rows and columns in
+    X as separate output variables. 
+    
+    [M1,M2,M3,...,MN] = SIZE(X) for N&gt;1 returns the sizes of the first N 
+    dimensions of the array X.  If the number of output arguments N does
+    not equal NDIMS(X), then for:
+ 
+    N &gt; NDIMS(X), SIZE returns ones in the "extra" variables, i.e., outputs
+                  NDIMS(X)+1 through N.
+    N &lt; NDIMS(X), MN contains the product of the sizes of dimensions N
+                  through NDIMS(X).
+ 
+    M = SIZE(X,DIM) returns the length of the dimension specified
+    by the scalar DIM.  For example, SIZE(X,1) returns the number
+    of rows. If DIM &gt; NDIMS(X), M will be 1.
+ 
+    When SIZE is applied to a Java array, the number of rows
+    returned is the length of the Java array and the number of columns
+    is always 1.  When SIZE is applied to a Java array of arrays, the
+    result describes only the top level array in the array of arrays.
+ 
+    Example:
+    If
+       X = rand(2,3,4);
+    then
+       d = size(X)              returns  d = [2 3 4]
+       [m1,m2,m3,m4] = size(X)  returns  m1 = 2, m2 = 3, m3 = 4, m4 = 1
+       [m,n] = size(X)          returns  m = 2, n = 12
+       m2 = size(X,2)           returns  m2 = 3
+ 
+    See also LENGTH, NDIMS, NUMEL.
+
+    Overloaded methods:
+       serial/size
+       timer/size
+       triangulation/size
+       TriRep/size
+       daqdevice/size
+       daqchild/size
+       distributed/size
+       codistributed/size
+       Composite/size
+       gpuArray/size
+       videosource/size
+       videoinput/size
+       visa/size
+       udp/size
+       tcpip/size
+       icgroup/size
+       icdevice/size
+       i2c/size
+       gpib/size
+       Bluetooth/size
+       InputOutputModel/size
+       dataset/size
+       categorical/size
+       symfun/size
+       sym/size
+       tscollection/size
+
+    Reference page in Help browser
+       doc size
+
+</pre><p>You can also use the <tt>F1</tt> key to <i>search</i> MATLAB's documentation.</p><p>Use <tt>doc</tt> for more extensive documentation:  doc size</p><h2>Some more functions (and a little philosophy)<a name="20"></a></h2><p>Here's some more data from another Kart-race. This time we have the lap timings for 5 laps for three players: <tt>koopa</tt>, <tt>yoshi</tt> and <tt>luigi</tt>:</p><pre class="codeinput">race_times = [22.1, 21.7, 20.2, 18.2, 16.7; <span class="keyword">...</span>
+              17.7, 21.2, 24.3, 19.1, 21.1; <span class="keyword">...</span>
+              26.6, 21.2, 31.4, 18.2, 16.4];
+</pre><p>Let's pull out <tt>yoshi</tt>'s lap times:</p><pre class="codeinput">yoshi_times = race_times(2, :);
+</pre><p>We can sort <tt>yoshi</tt>'s lap times using the sort command:</p><pre class="codeinput">sort(yoshi_times)
+</pre><pre class="codeoutput">
+ans =
+
+   17.7000   19.1000   21.1000   21.2000   24.3000
+
+</pre><p><tt>sort</tt> can also be used to sort in <i>descending</i> order:</p><pre class="codeinput">sort(yoshi_times, <span class="string">'descend'</span>)
+</pre><pre class="codeoutput">
+ans =
+
+   24.3000   21.2000   21.1000   19.1000   17.7000
+
+</pre><p>How does <tt>sort</tt> work for a matrix?</p><pre class="codeinput">sort(race_times)
+</pre><pre class="codeoutput">
+ans =
+
+   17.7000   21.2000   20.2000   18.2000   16.4000
+   22.1000   21.2000   24.3000   18.2000   16.7000
+   26.6000   21.7000   31.4000   19.1000   21.1000
+
+</pre><p>For a matrix, <tt>sort</tt> sorts every column. We can have it sort every row instead:</p><pre class="codeinput">sort(race_times, 2)
+</pre><pre class="codeoutput">
+ans =
+
+   16.7000   18.2000   20.2000   21.7000   22.1000
+   17.7000   19.1000   21.1000   21.2000   24.3000
+   16.4000   18.2000   21.2000   26.6000   31.4000
+
+</pre><p>To find yoshi's fastest lap, we can use the <tt>min</tt> function:</p><pre class="codeinput">min(yoshi_times)
+</pre><pre class="codeoutput">
+ans =
+
+   17.7000
+
+</pre><p>For a matrix, <tt>min</tt> computes the minimum of each column:</p><pre class="codeinput">min(race_times)
+</pre><pre class="codeoutput">
+ans =
+
+   17.7000   21.2000   20.2000   18.2000   16.4000
+
+</pre><p>To get the minimum for each row, the syntax is a bit more involved, but it's clear from the <tt>help</tt> documentation on <tt>min</tt>:</p><pre class="codeinput">min(race_times, [], 2)
+</pre><pre class="codeoutput">
+ans =
+
+   16.7000
+   17.7000
+   16.4000
+
+</pre><p>To get the minimum of the entire matrix, we could do:</p><pre class="codeinput">min(min(race_times))
+</pre><pre class="codeoutput">
+ans =
+
+   16.4000
+
+</pre><p>Or alternatively:</p><pre class="codeinput">min(race_times(:))
+</pre><pre class="codeoutput">
+ans =
+
+   16.4000
+
+</pre><p><tt>sum</tt> also sums columns by default:</p><pre class="codeinput">sum(race_times)
+</pre><pre class="codeoutput">
+ans =
+
+   66.4000   64.1000   75.9000   55.5000   54.2000
+
+</pre><p>To sum rows:</p><pre class="codeinput">sum(race_times, 2)
+</pre><pre class="codeoutput">
+ans =
+
+   98.9000
+  103.4000
+  113.8000
+
+</pre><p>Finally, a nice way to <b>visualize</b> a matrix is to represent each number by a color:</p><pre class="codeinput">imagesc(race_times)
+</pre><img vspace="5" hspace="5" src="built_in_functions_03.png" alt=""> <p>Red indicates higher values, while blue indicates lower ones</p><p>So functions let you do neat stuff with data, without having you worry about the details, i.e., how the function is <i>implemented</i>. If you'll notice, the <tt>help</tt> on a function in MATLAB tells you <i>what</i> the function does and how to <i>use</i> it. But it doesn't specify <i>how</i> the function does what it does.</p><p>This idea of "hiding information" is one of the most essential in programming. A later version of MATLAB, for instance, might use a faster <tt>sort</tt> algorithm, but it won't change how you use <tt>sort</tt> in your programs. This is what makes functions so great---you can use them without having to think about how they are implemented.</p><p>This is one reason you should always prefer MATLAB's <b>built-in</b> functions over your own implementations - you don't have to worry about the details because someone else has already done that for you.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Copyright 2015, Ashwin Srinath, All Rights Reserved
+% LICENSE: MIT (http://opensource.org/licenses/MIT)
+% (TL;DR) 
+% You can do whatever you want
+% with this code
+% as long as you include the original copyright
+% and license in their original sources.
+% I don't guarantee that
+% any of this code
+% serves any purpose whatsoever.
+
+%% Introduction
+% In this document, we'll talk about 
+% MATLAB's in-built functions, and how
+% and why to use them
+
+%%
+% Here are the masses of the planets in our
+% Solar System:
+planet_masses = [3.3e23, 4.86e24, 5.97e24, 6.41e23, 1.89e27, ...
+                5.68e26, 8.68e25];
+disp(planet_masses)
+
+%%
+% Let's pull out just the mass of Mars:
+mars_mass = planet_masses(4);
+disp(mars_mass)
+
+%%
+% Let's check the length of |planet_masses|:
+length(planet_masses)
+
+%%
+% Whoops! We missed Neptune and Pluto!
+% Let's _append_ those to |planet_masses|:
+planet_masses = [planet_masses, 10.2e25, 1.25e22];
+disp(planet_masses)
+
+%%
+% Let's try to visualize the relative
+% masses of the planets:
+bar(planet_masses)
+
+%%
+% Here's a visualization of the masses
+% of just the Gas Giants:
+gas_giant_mases = planet_masses(5:8);
+bar(gas_giant_mases)
+
+%%
+% Remember, when constructing vectors or matrices,
+% commas (|,|) append things horizontally,
+% and semicolons (|;|) append things vertically.
+
+%% Built-in functions
+% In the previous handful of commands,
+% we used a lot of MATLAB's in-built 
+% _functionality_, like |disp|, |length| and |bar|.
+% These are are called MATLAB *functions*, and
+% they are invoked, or _called_ with the following
+% syntax:
+%
+%  functionName(input1, input2, ...)
+%
+% Inputs are also called _parameters_ or _arguments_
+
+%%
+% In general, functions can accept more than one input:
+
+zeros(2, 3)
+
+%%
+% And we can "catch" what the function returns
+% by assigning it to a variable:
+
+zeros_mat = zeros(2, 3);
+disp(zeros_mat)
+
+%%
+% Some functions can work with variable number
+% of inputs:
+
+ones(3)
+
+%%
+
+ones(3,4)
+
+%%
+% Function calls can be part of larger expressions:
+V = 5*ones(1,3);
+disp(V)
+
+%%
+% When a function returns more than one thing,
+% we can assign each output to a separate variable
+% with special syntax like this:
+B = randi(10, 5, 4);
+[nrows, ncols] = size(B);
+disp(nrows)
+disp(ncols)
+
+%% Getting help on a function
+% To access a function's _documentation_,
+% i.e., information on what a functions does,
+% and how to use it,
+% simply run a |help| on that function like so:
+
+help size
+
+%%
+% You can also use the |F1| key to
+% _search_ MATLAB's documentation.
+
+%%
+% Use |doc| for more extensive documentation:
+%  doc size
+
+%% Some more functions (and a little philosophy)
+
+%%
+% Here's some more data from another Kart-race. This
+% time we have the lap timings for 5 laps for three players:
+% |koopa|, |yoshi| and |luigi|:
+race_times = [22.1, 21.7, 20.2, 18.2, 16.7; ...
+              17.7, 21.2, 24.3, 19.1, 21.1; ...
+              26.6, 21.2, 31.4, 18.2, 16.4]; 
+
+%%
+% Let's pull out |yoshi|'s lap times:
+yoshi_times = race_times(2, :);
+
+%%
+% We can sort |yoshi|'s lap times using the sort command:
+sort(yoshi_times)
+
+%%
+% |sort| can also be used to sort in _descending_ order:
+sort(yoshi_times, 'descend')
+
+%%
+% How does |sort| work for a matrix?
+sort(race_times)
+
+%%
+% For a matrix, |sort| sorts every column.
+% We can have it sort every row instead:
+sort(race_times, 2)
+
+%%
+% To find yoshi's fastest lap, we can use
+% the |min| function:
+min(yoshi_times)
+
+%%
+% For a matrix, |min| computes the minimum
+% of each column:
+min(race_times)
+
+%%
+% To get the minimum for each row, the
+% syntax is a bit more involved, but it's
+% clear from the |help| documentation on |min|:
+min(race_times, [], 2)
+
+%%
+% To get the minimum of the entire matrix,
+% we could do:
+min(min(race_times))
+
+%%
+% Or alternatively:
+min(race_times(:))
+
+%%
+% |sum| also sums columns by default:
+sum(race_times)
+
+%%
+% To sum rows:
+sum(race_times, 2)
+
+%%
+% Finally, a nice way to *visualize* a matrix
+% is to represent each number by a color:
+imagesc(race_times)
+
+%%
+% Red indicates higher values, while
+% blue indicates lower ones
+
+%%
+% So functions let you do neat stuff with
+% data, without having you worry about
+% the details, i.e., how the function is
+% _implemented_.
+% If you'll notice, the |help| on a function
+% in MATLAB tells you _what_ the function
+% does and how to _use_ it. But it doesn't
+% specify _how_ the function does what
+% it does.
+%
+% This idea of "hiding information" is
+% one of the most essential in programming.
+% A later version of MATLAB, for instance,
+% might use a faster |sort| algorithm, but
+% it won't change how you use |sort|
+% in your programs. This is what makes
+% functions so greatREPLACE_WITH_DASH_DASH-you can use them
+% without having to think about how they
+% are implemented.
+%
+% This is one reason you should always prefer
+% MATLAB's *built-in* functions over your
+% own implementations - you don't have to
+% worry about the details because someone
+% else has already done that for you.
+##### SOURCE END #####
+--></body></html>
