@@ -1,0 +1,394 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Output with MATLAB</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-01-21"><meta name="DC.source" content="output_strings.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Output with MATLAB</h1><!--introduction--><p>In this document, we'll learn how to output and format <i>character strings</i> in MATLAB with the <tt>fprintf</tt> function</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introduction</a></li><li><a href="#8">Using <tt>fprintf</tt></a></li><li><a href="#14">Displaying Numeric Data</a></li><li><a href="#31">Tabs and Newlines</a></li></ul></div><h2>Introduction<a name="1"></a></h2><p>So far we've used MATLAB to compute with numbers:</p><pre class="codeinput">a = [1, 22.2, 4.7];
+b = [2, 3, 4];
+a./b
+</pre><pre class="codeoutput">
+ans =
+
+    0.5000    7.4000    1.1750
+
+</pre><p>But it's also useful to be able to manipulate <i>characters</i> or <i>character strings</i>:</p><pre class="codeinput">a = <span class="string">'two'</span>
+</pre><pre class="codeoutput">
+a =
+
+two
+
+</pre><p><i>Character strings</i> are a sequence of zero or more characters:</p><pre class="codeinput">a = <span class="string">''</span>
+</pre><pre class="codeoutput">
+a =
+
+     ''
+
+
+</pre><pre class="codeinput">a = <span class="string">'two riders'</span>
+</pre><pre class="codeoutput">
+a =
+
+two riders
+
+</pre><pre class="codeinput">a = <span class="string">'2 rder$'</span>
+</pre><pre class="codeoutput">
+a =
+
+2 rder$
+
+</pre><p>It's important to remember that strings are just vectors:</p><pre class="codeinput">a(1)
+</pre><pre class="codeoutput">
+ans =
+
+2
+
+</pre><pre class="codeinput">a(end)
+</pre><pre class="codeoutput">
+ans =
+
+$
+
+</pre><h2>Using <tt>fprintf</tt><a name="8"></a></h2><p>Given a string, the <tt>fprintf</tt> command displays it:</p><pre class="codeinput">fprintf(<span class="string">'Two riders were approaching'</span>)
+</pre><pre class="codeoutput">Two riders were approaching</pre><pre class="codeinput">line = <span class="string">'Two riders were approaching'</span>;
+fprintf(line)
+</pre><pre class="codeoutput">Two riders were approaching</pre><p>Sometimes, we have something stored in a <i>variable</i>, and we'd like to display it in a string. <tt>frpintf</tt> is useful in this case:</p><pre class="codeinput">num_riders = <span class="string">'Two'</span>;
+fprintf(<span class="string">'%s riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput">Two riders were approaching</pre><p>In the above command, we're asking <tt>fprintf</tt> to display the string <tt>'%s riders were approaching'</tt>. But <tt>%s</tt> is a special sequence of characters. It isn't printed to the screen itself, but is <i>replaced</i> by whatever value is stored in the variable <tt>num_riders</tt>.</p><p>In fact, we can have several of these "special sequences". Each one will be replaced by the values provided to <tt>fprintf</tt>.</p><pre class="codeinput">num_riders = <span class="string">'Two'</span>;
+riders_action = <span class="string">'doing the Salsa'</span>;
+fprintf(<span class="string">'%s riders were %s'</span>, num_riders, riders_action)
+</pre><pre class="codeoutput">Two riders were doing the Salsa</pre><pre class="codeinput">num_riders = <span class="string">'Three'</span>;
+fprintf(<span class="string">'%s riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput">Three riders were approaching</pre><h2>Displaying Numeric Data<a name="14"></a></h2><p>With numeric data, there are a few more details. Integers are easy; use <tt>%d</tt> instead of <tt>%s</tt></p><pre class="codeinput">num_riders = 22;
+fprintf(<span class="string">'%d riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput">22 riders were approaching</pre><p>For <i>floating-point</i> numbers:</p><pre class="codeinput">num_riders = 2.5;
+fprintf(<span class="string">'%f riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput">2.500000 riders were approaching</pre><p>By default, MATLAB prints floating-point numbers up to a precision of 6 digits following the decimal point. Of course, we have control over that:</p><pre class="codeinput">num_riders = 2.5;
+fprintf(<span class="string">'%0.2f riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput">2.50 riders were approaching</pre><p>In the sequence <tt>%0.2f</tt>:</p><div><ul><li><tt>0</tt> specifies the <i>field width</i>, i.e., the <b>minimum</b> number of digits to print</li><li><tt>2</tt> specifies the <i>precision</i>, i.e., the number of digits following the decimal point</li><li><tt>f</tt>, of course, specifies that the sequence is to be replaced by a <i>floating-point</i> value</li></ul></div><p>Let's vary the field width first:</p><pre class="codeinput">fprintf(<span class="string">'%2.2f riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput">2.50 riders were approaching</pre><pre class="codeinput">fprintf(<span class="string">'%5.2f riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput"> 2.50 riders were approaching</pre><pre class="codeinput">fprintf(<span class="string">'%10.2f riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput">      2.50 riders were approaching</pre><p>MATLAB will simply <i>pad</i> with empty spaces if the field width is larger than the number of digits</p><p>Let's now vary the precision:</p><pre class="codeinput">num_riders = pi;
+fprintf(<span class="string">'%2.0f riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput"> 3 riders were approaching</pre><pre class="codeinput">num_riders = pi;
+fprintf(<span class="string">'%2.2f riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput">3.14 riders were approaching</pre><pre class="codeinput">num_riders = pi;
+fprintf(<span class="string">'%2.7f riders were approaching'</span>, num_riders)
+</pre><pre class="codeoutput">3.1415927 riders were approaching</pre><p>So let's say we have the following data:</p><pre class="codeinput">player = <span class="string">'mario'</span>;
+total_time = 49.329;
+</pre><p>And we want to print the string:  <tt>'mario completed the race in 49.3 seconds'</tt></p><p>The appropriate command would be:</p><pre class="codeinput">fprintf(<span class="string">'%s completed the race in %0.1f seconds'</span>, player, total_time)
+</pre><pre class="codeoutput">mario completed the race in 49.3 seconds</pre><p>For numbers in the <i>scientific notation</i>, the <i>precision</i> specifies the number of significant digits to display. And we use <tt>%g</tt> instead of <tt>%f</tt>:</p><pre class="codeinput">Avogado_number = 6.022141e23;
+</pre><pre class="codeinput">fprintf(<span class="string">'0.3g'</span>, Avogado_number)
+</pre><pre class="codeoutput">0.3g</pre><pre class="codeinput">fprintf(<span class="string">'0.5g'</span>, Avogado_number)
+</pre><pre class="codeoutput">0.5g</pre><h2>Tabs and Newlines<a name="31"></a></h2><p>Special characters are available to insert <i>tabs</i> and <i>new lines</i> (or <i>line breaks</i>) in strings, using the <tt>\n</tt> character:</p><pre class="codeinput">lines = <span class="string">'Two riders were approaching \n The wind began to howl \n'</span>;
+fprintf(lines)
+</pre><pre class="codeoutput">Two riders were approaching 
+ The wind began to howl 
+</pre><p>We can get rid of that awkward space:</p><pre class="codeinput">lines = <span class="string">'Two riders were approaching\nThe wind began to howl\n'</span>;
+fprintf(lines)
+</pre><pre class="codeoutput">Two riders were approaching
+The wind began to howl
+</pre><p>You can chain many line breaks together:</p><pre class="codeinput">lines = <span class="string">'Two riders were approaching\n\n\nThe wind began to howl \n'</span>;
+fprintf(lines)
+</pre><pre class="codeoutput">Two riders were approaching
+
+
+The wind began to howl 
+</pre><p>Similarly, the <tt>\t</tt> character inserts <i>tabs</i>:</p><pre class="codeinput">lines = <span class="string">'Two riders were approaching\tThe wind began to howl \n'</span>;
+fprintf(lines)
+</pre><pre class="codeoutput">Two riders were approaching	The wind began to howl 
+</pre><p>To wrap up, let's say we had the following data:</p><pre class="codeinput">player1 = <span class="string">'mario'</span>;
+player2 = <span class="string">'luigi'</span>;
+player1_lap_time = 20.021;
+player2_lap_time = 19.876;
+</pre><p>And we wanted to achieve this output with a single command:</p><pre>mario lap time:    20.0
+luigi lap time:    19.8</pre><p>We could do:</p><pre class="codeinput">fprintf(<span class="string">'%s lap time:\t%0.1f\n%s lap time:\t%0.1f'</span>, <span class="keyword">...</span>
+        player1, player1_lap_time, player2, player2_lap_time)
+</pre><pre class="codeoutput">mario lap time:	20.0
+luigi lap time:	19.9</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Output with MATLAB
+% In this document, we'll learn
+% how to output and format _character strings_
+% in MATLAB with the |fprintf| function
+
+%% Introduction
+%
+% So far we've used MATLAB
+% to compute with numbers:
+
+a = [1, 22.2, 4.7];
+b = [2, 3, 4];
+a./b
+
+%%
+% But it's also useful to be able
+% to manipulate _characters_ or
+% _character strings_:
+
+a = 'two'
+
+%%
+% _Character strings_ are a sequence
+% of zero or more characters:
+
+a = ''
+
+%%
+
+a = 'two riders'
+
+%%
+
+a = '2 rder$'
+
+%%
+% It's important to remember that
+% strings are just vectors:
+
+a(1)
+
+%%
+a(end)
+
+%% Using |fprintf|
+% Given a string, the |fprintf| command
+% displays it:
+
+fprintf('Two riders were approaching')
+
+%%
+line = 'Two riders were approaching';
+fprintf(line)
+
+%%
+% Sometimes, we have something stored
+% in a _variable_, and we'd like to
+% display it in a string. |frpintf|
+% is useful in this case:
+
+num_riders = 'Two';
+fprintf('%s riders were approaching', num_riders)
+
+%%
+% In the above command, we're asking |fprintf|
+% to display the string |'%s riders were approaching'|.
+% But |%s| is a special sequence of characters.
+% It isn't printed to the screen itself, but is
+% _replaced_ by whatever value is stored in the
+% variable |num_riders|.
+
+%%
+% In fact, we can have several of these "special sequences".
+% Each one will be replaced by the values
+% provided to |fprintf|.
+num_riders = 'Two';
+riders_action = 'doing the Salsa';
+fprintf('%s riders were %s', num_riders, riders_action)
+
+%%
+num_riders = 'Three';
+fprintf('%s riders were approaching', num_riders)
+
+%% Displaying Numeric Data
+%
+% With numeric data, there are a few more details.
+% Integers are easy; use |%d| instead of |%s|
+
+num_riders = 22;
+fprintf('%d riders were approaching', num_riders)
+
+%%
+% For _floating-point_ numbers:
+
+num_riders = 2.5;
+fprintf('%f riders were approaching', num_riders)
+
+%%
+% By default, MATLAB prints floating-point numbers
+% up to a precision of 6 digits following the
+% decimal point. Of course, we have control over
+% that:
+
+num_riders = 2.5;
+fprintf('%0.2f riders were approaching', num_riders)
+
+%%
+% In the sequence |%0.2f|:
+% 
+% * |0| specifies the _field width_, i.e., the *minimum*
+% number of digits to print
+% * |2| specifies the _precision_, i.e., the number of digits following the
+% decimal point
+% * |f|, of course, specifies that the sequence is to be replaced by
+% a _floating-point_ value
+
+%%
+% Let's vary the field width first:
+
+fprintf('%2.2f riders were approaching', num_riders)
+
+%%
+
+fprintf('%5.2f riders were approaching', num_riders)
+
+%%
+
+fprintf('%10.2f riders were approaching', num_riders)
+
+%%
+% MATLAB will simply _pad_ with empty spaces if the
+% field width is larger than the number of digits
+
+%%
+% Let's now vary the precision:
+
+num_riders = pi;
+fprintf('%2.0f riders were approaching', num_riders)
+
+%%
+num_riders = pi;
+fprintf('%2.2f riders were approaching', num_riders)
+
+%%
+num_riders = pi;
+fprintf('%2.7f riders were approaching', num_riders)
+
+%%
+% So let's say we have the following data:
+
+player = 'mario';
+total_time = 49.329;
+
+%%
+% And we want to print the string:
+%  |'mario completed the race in 49.3 seconds'|
+
+%%
+% The appropriate command would be:
+fprintf('%s completed the race in %0.1f seconds', player, total_time)
+
+
+%%
+% For numbers in the _scientific notation_, the
+% _precision_ specifies the number of significant
+% digits to display. And we use |%g| instead
+% of |%f|:
+
+Avogado_number = 6.022141e23;
+
+%%
+fprintf('0.3g', Avogado_number)
+
+%%
+fprintf('0.5g', Avogado_number)
+
+%% Tabs and Newlines
+% Special characters are available to 
+% insert _tabs_ and _new lines_ (or _line breaks_)
+% in strings, using the |\n| character:
+
+lines = 'Two riders were approaching \n The wind began to howl \n';
+fprintf(lines)
+
+%%
+% We can get rid of that awkward space:
+lines = 'Two riders were approaching\nThe wind began to howl\n';
+fprintf(lines)
+
+%%
+% You can chain many line breaks together:
+lines = 'Two riders were approaching\n\n\nThe wind began to howl \n';
+fprintf(lines)
+
+%%
+% Similarly, the |\t| character inserts _tabs_:
+lines = 'Two riders were approaching\tThe wind began to howl \n';
+fprintf(lines)
+
+%%
+% To wrap up, let's say we had the following data:
+
+player1 = 'mario';
+player2 = 'luigi';
+player1_lap_time = 20.021;
+player2_lap_time = 19.876;
+
+%%
+% And we wanted to achieve this output with
+% a single command:
+%
+%  mario lap time:    20.0
+%  luigi lap time:    19.8
+
+%%
+% We could do:
+fprintf('%s lap time:\t%0.1f\n%s lap time:\t%0.1f', ...
+        player1, player1_lap_time, player2, player2_lap_time)
+
+
+
+
+##### SOURCE END #####
+--></body></html>
