@@ -53,6 +53,7 @@
 %%
 % We can even have MATLAB pop up a dialog box,
 % instead of prompting on the command window:
+%
 %  answer = inputdlg('Enter lap time: ');
 %  disp(answer)
 %

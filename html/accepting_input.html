@@ -77,7 +77,8 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <span class="comment">% serves any purpose whatsoever.</span>
 </pre><h2>Accepting User Input<a name="2"></a></h2><p>In this document, we'll learn how to write programs that accept user input.</p><p>The <tt>input</tt> function is used to assign a user-provided value to a variable:</p><pre>lap_time = input('Enter lap time: ');
 disp(lap_time)</pre><p>Try entering:</p><div><ul><li>A number</li><li>A string</li><li>Nothing</li></ul></div><p>In the above command, 'Enter lap time: ' is a <i>prompt</i>. When the command is exectuted, this prompt is presented to the user. The user is expected to enter a value, and hit the Enter key. When that happens, MATLAB will try to assign that value to the variable <tt>lap_time</tt>.</p><p>If we're expecting the user to enter a <i>string</i>, it's useful to provide an additional input to <tt>input</tt>:</p><pre>player_name = input('Enter player name: ', 's')
-disp(player_name)</pre><p>Try entering:</p><div><ul><li>A name, i.e., a string</li><li>A number</li><li>Nothing</li></ul></div><p>We can even have MATLAB pop up a dialog box, instead of prompting on the command window:  answer = inputdlg('Enter lap time: ');  disp(answer)</p><p>Notice from the workspace that <tt>answer</tt> is a <i>1x1 cell</i>. We can't, for instance, do math with it:</p><pre>3*answer</pre><h2>Digression: Cell Arrays<a name="6"></a></h2><p>Cell arrays, like vectors and matrices, can be used to store a <i>collection</i> of values:</p><pre class="codeinput">a = {1.0, 2.45, <span class="string">'hello'</span>};
+disp(player_name)</pre><p>Try entering:</p><div><ul><li>A name, i.e., a string</li><li>A number</li><li>Nothing</li></ul></div><p>We can even have MATLAB pop up a dialog box, instead of prompting on the command window:</p><pre>answer = inputdlg('Enter lap time: ');
+disp(answer)</pre><p>Notice from the workspace that <tt>answer</tt> is a <i>1x1 cell</i>. We can't, for instance, do math with it:</p><pre>3*answer</pre><h2>Digression: Cell Arrays<a name="6"></a></h2><p>Cell arrays, like vectors and matrices, can be used to store a <i>collection</i> of values:</p><pre class="codeinput">a = {1.0, 2.45, <span class="string">'hello'</span>};
 </pre><p>The difference is that cell arrays offer a simple way to store different <i>kinds</i> of values in a single container:</p><pre class="codeinput">b = {1.0, 2.45, [1,2,3], <span class="string">'hello'</span>};
 </pre><p>Above, the cell array <tt>b</tt> stores two numbers, a vector <i>and</i> a string.</p><p>Elements of cell arrays are accessed using curly braces:</p><pre class="codeinput">a{1}
 </pre><pre class="codeoutput">
@@ -159,6 +160,7 @@ disp(players{choice})</pre><p class="footer"><br><a href="http://www.mathworks.c
 %%
 % We can even have MATLAB pop up a dialog box,
 % instead of prompting on the command window:
+%
 %  answer = inputdlg('Enter lap time: ');
 %  disp(answer)
 %
