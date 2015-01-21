@@ -177,13 +177,13 @@ fprintf('%s completed the race in %0.1f seconds', player, total_time)
 % digits to display. And we use |%g| instead
 % of |%f|:
 
-Avogado_number = 6.022141e23;
+Avogadro_number = 6.022141e23;
 
 %%
-fprintf('%0.3g', Avogado_number)
+fprintf('%0.3g', Avogadro_number)
 
 %%
-fprintf('%0.5g', Avogado_number)
+fprintf('%0.5g', Avogadro_number)
 
 %% Tabs and Newlines
 % Special characters are available to 
