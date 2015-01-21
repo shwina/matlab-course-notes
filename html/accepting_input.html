@@ -1,0 +1,247 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>accepting_input</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-01-21"><meta name="DC.source" content="accepting_input.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Accepting User Input</a></li><li><a href="#6">Digression: Cell Arrays</a></li><li><a href="#14">Using Menu</a></li></ul></div><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
+<span class="comment">% LICENSE: MIT (http://opensource.org/licenses/MIT)</span>
+<span class="comment">% (TL;DR)</span>
+<span class="comment">% You can do whatever you want</span>
+<span class="comment">% with this code</span>
+<span class="comment">% as long as you include the original copyright</span>
+<span class="comment">% and license in their original sources.</span>
+<span class="comment">% I don't guarantee that</span>
+<span class="comment">% any of this code</span>
+<span class="comment">% serves any purpose whatsoever.</span>
+</pre><h2>Accepting User Input<a name="2"></a></h2><p>In this document, we'll learn how to write programs that accept user input.</p><p>The <tt>input</tt> function is used to assign a user-provided value to a variable:</p><pre>lap_time = input('Enter lap time: ');
+disp(lap_time)</pre><p>Try entering:</p><div><ul><li>A number</li><li>A string</li><li>Nothing</li></ul></div><p>In the above command, 'Enter lap time: ' is a <i>prompt</i>. When the command is exectuted, this prompt is presented to the user. The user is expected to enter a value, and hit the Enter key. When that happens, MATLAB will try to assign that value to the variable <tt>lap_time</tt>.</p><p>If we're expecting the user to enter a <i>string</i>, it's useful to provide an additional input to <tt>input</tt>:</p><pre>player_name = input('Enter player name: ', 's')
+disp(player_name)</pre><p>Try entering:</p><div><ul><li>A name, i.e., a string</li><li>A number</li><li>Nothing</li></ul></div><p>We can even have MATLAB pop up a dialog box, instead of prompting on the command window:  answer = inputdlg('Enter lap time: ');  disp(answer)</p><p>Notice from the workspace that <tt>answer</tt> is a <i>1x1 cell</i>. We can't, for instance, do math with it:</p><pre>3*answer</pre><h2>Digression: Cell Arrays<a name="6"></a></h2><p>Cell arrays, like vectors and matrices, can be used to store a <i>collection</i> of values:</p><pre class="codeinput">a = {1.0, 2.45, <span class="string">'hello'</span>};
+</pre><p>The difference is that cell arrays offer a simple way to store different <i>kinds</i> of values in a single container:</p><pre class="codeinput">b = {1.0, 2.45, [1,2,3], <span class="string">'hello'</span>};
+</pre><p>Above, the cell array <tt>b</tt> stores two numbers, a vector <i>and</i> a string.</p><p>Elements of cell arrays are accessed using curly braces:</p><pre class="codeinput">a{1}
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><pre class="codeinput">a{3}
+</pre><pre class="codeoutput">
+ans =
+
+hello
+
+</pre><p>OK, let's go back to our dialog box:</p><pre>answer = inputdlg('Enter lap time: ');</pre><p><tt>answer</tt> is now a cell array with 1 element, or value.</p><pre>lap_time = answer{1}</pre><p>We can even create a dialog box with <i>multiple</i> entry boxes. To do that, we need to input several prompts in a cell array:</p><pre class="codeinput"><span class="comment">%  prompts = {'Enter player name: ', 'Enter lap time: '};</span>
+<span class="comment">%  answers = inputdlg(prompts);</span>
+</pre><p>Finally, there's a gotcha to using <tt>inputdlg</tt>. Each of the elements in <tt>ans</tt> is actually a string. For instance:</p><pre>lap_times = answers{2}
+disp(lap_times)
+disp(lap_times + 1)
+disp(class(lap_times))</pre><p>You get odd answers if you try to do math between character strings and numbers.</p><p>The solution is to use the <tt>str2num</tt> function to convert the character string to a number:</p><pre>lap_times = str2num(answers{2})
+disp(lap_times)
+disp(lap_times + 1)
+disp(class(lap_times))</pre><h2>Using Menu<a name="14"></a></h2><p>Finally, you can present the user with a <i>menu</i> using the <tt>menu</tt> function:</p><pre>players = {'Mario', 'Luigi', 'Bowser', 'Yoshi'};
+choice = menu(players)
+disp(choice)
+disp(players{choice})</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+% Copyright 2015, Ashwin Srinath, All Rights Reserved
+% LICENSE: MIT (http://opensource.org/licenses/MIT)
+% (TL;DR) 
+% You can do whatever you want
+% with this code
+% as long as you include the original copyright
+% and license in their original sources.
+% I don't guarantee that
+% any of this code
+% serves any purpose whatsoever.
+
+%% Accepting User Input
+% In this document, we'll learn
+% how to write programs that accept user
+% input.
+
+
+%%
+% The |input| function is used to assign
+% a user-provided value to a variable:
+%
+%  lap_time = input('Enter lap time: ');
+%  disp(lap_time)
+%
+% Try entering:
+%
+% * A number
+% * A string
+% * Nothing
+%
+% In the above command, 'Enter lap time: ' is
+% a _prompt_. When the command is exectuted,
+% this prompt is presented to the user. The
+% user is expected to enter a value, and hit
+% the Enter key. When that happens, MATLAB will
+% try to assign that value to the variable |lap_time|.
+
+%%
+% If we're expecting the user to enter a
+% _string_, it's useful to provide an additional
+% input to |input|:
+%
+%  player_name = input('Enter player name: ', 's')
+%  disp(player_name)
+%
+% Try entering:
+%
+% * A name, i.e., a string
+% * A number
+% * Nothing
+
+
+%%
+% We can even have MATLAB pop up a dialog box,
+% instead of prompting on the command window:
+%  answer = inputdlg('Enter lap time: ');
+%  disp(answer)
+%
+% Notice from the workspace that |answer| is
+% a _1x1 cell_. We can't, for instance, do
+% math with it:
+%
+%  3*answer
+%
+
+%% Digression: Cell Arrays
+% Cell arrays, like vectors and matrices, can
+% be used to store a _collection_ of values:
+
+a = {1.0, 2.45, 'hello'};
+
+%%
+% The difference is that cell arrays offer
+% a simple way to store different _kinds_ of
+% values in a single container:
+
+b = {1.0, 2.45, [1,2,3], 'hello'};
+
+%%
+% Above, the cell array |b| stores
+% two numbers, a vector _and_ a string.
+
+%%
+% Elements of cell arrays are accessed using
+% curly braces:
+
+a{1}
+
+%%
+a{3}
+
+
+%%
+% OK, let's go back to our dialog box:
+%
+%  answer = inputdlg('Enter lap time: ');
+%
+% |answer| is now a cell array with 1 element, or value.
+%
+%  lap_time = answer{1}
+
+%%
+% We can even create a dialog box with _multiple_
+% entry boxes. To do that, we need to input
+% several prompts in a cell array:
+
+%  prompts = {'Enter player name: ', 'Enter lap time: '};
+%  answers = inputdlg(prompts);
+
+%%
+% Finally, there's a gotcha to using |inputdlg|.
+% Each of the elements in |ans| is actually a
+% string. For instance:
+%
+%  lap_times = answers{2}
+%  disp(lap_times)
+%  disp(lap_times + 1)
+%  disp(class(lap_times))
+%
+% You get odd answers if you try to do math
+% between character strings and numbers.
+%
+% The solution is to use the |str2num| function
+% to convert the character string to a number:
+%
+%  lap_times = str2num(answers{2})
+%  disp(lap_times)
+%  disp(lap_times + 1)
+%  disp(class(lap_times))
+
+%% Using Menu
+% Finally, you can present the user with
+% a _menu_ using the |menu| function:
+%
+%  players = {'Mario', 'Luigi', 'Bowser', 'Yoshi'};
+%  choice = menu(players)
+%  disp(choice)
+%  disp(players{choice})
+
+##### SOURCE END #####
+--></body></html>

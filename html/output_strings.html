@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>Output with MATLAB</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-01-21"><meta name="DC.source" content="output_strings.m"><style type="text/css">
+      --><title>output_strings</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-01-21"><meta name="DC.source" content="output_strings.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -65,7 +65,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h1>Output with MATLAB</h1><!--introduction--><p>In this document, we'll learn how to output and format <i>character strings</i> in MATLAB with the <tt>fprintf</tt> function</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Introduction</a></li><li><a href="#8">Using <tt>fprintf</tt></a></li><li><a href="#14">Displaying Numeric Data</a></li><li><a href="#31">Tabs and Newlines</a></li></ul></div><h2>Introduction<a name="1"></a></h2><p>So far we've used MATLAB to compute with numbers:</p><pre class="codeinput">a = [1, 22.2, 4.7];
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Output with MATLAB</a></li><li><a href="#3">Introduction</a></li><li><a href="#10">Using <tt>fprintf</tt></a></li><li><a href="#16">Displaying Numeric Data</a></li><li><a href="#33">Tabs and Newlines</a></li></ul></div><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
+<span class="comment">% LICENSE: MIT (http://opensource.org/licenses/MIT)</span>
+<span class="comment">% (TL;DR)</span>
+<span class="comment">% You can do whatever you want</span>
+<span class="comment">% with this code</span>
+<span class="comment">% as long as you include the original copyright</span>
+<span class="comment">% and license in their original sources.</span>
+<span class="comment">% I don't guarantee that</span>
+<span class="comment">% any of this code</span>
+<span class="comment">% serves any purpose whatsoever.</span>
+</pre><h2>Output with MATLAB<a name="2"></a></h2><p>In this document, we'll learn how to output and format <i>character strings</i> in MATLAB with the <tt>fprintf</tt> function</p><h2>Introduction<a name="3"></a></h2><p>So far we've used MATLAB to compute with numbers:</p><pre class="codeinput">a = [1, 22.2, 4.7];
 b = [2, 3, 4];
 a./b
 </pre><pre class="codeoutput">
@@ -110,7 +120,7 @@ ans =
 
 $
 
-</pre><h2>Using <tt>fprintf</tt><a name="8"></a></h2><p>Given a string, the <tt>fprintf</tt> command displays it:</p><pre class="codeinput">fprintf(<span class="string">'Two riders were approaching'</span>)
+</pre><h2>Using <tt>fprintf</tt><a name="10"></a></h2><p>Given a string, the <tt>fprintf</tt> command displays it:</p><pre class="codeinput">fprintf(<span class="string">'Two riders were approaching'</span>)
 </pre><pre class="codeoutput">Two riders were approaching</pre><pre class="codeinput">line = <span class="string">'Two riders were approaching'</span>;
 fprintf(line)
 </pre><pre class="codeoutput">Two riders were approaching</pre><p>Sometimes, we have something stored in a <i>variable</i>, and we'd like to display it in a string. <tt>frpintf</tt> is useful in this case:</p><pre class="codeinput">num_riders = <span class="string">'Two'</span>;
@@ -120,7 +130,7 @@ riders_action = <span class="string">'doing the Salsa'</span>;
 fprintf(<span class="string">'%s riders were %s'</span>, num_riders, riders_action)
 </pre><pre class="codeoutput">Two riders were doing the Salsa</pre><pre class="codeinput">num_riders = <span class="string">'Three'</span>;
 fprintf(<span class="string">'%s riders were approaching'</span>, num_riders)
-</pre><pre class="codeoutput">Three riders were approaching</pre><h2>Displaying Numeric Data<a name="14"></a></h2><p>With numeric data, there are a few more details. Integers are easy; use <tt>%d</tt> instead of <tt>%s</tt></p><pre class="codeinput">num_riders = 22;
+</pre><pre class="codeoutput">Three riders were approaching</pre><h2>Displaying Numeric Data<a name="16"></a></h2><p>With numeric data, there are a few more details. Integers are easy; use <tt>%d</tt> instead of <tt>%s</tt></p><pre class="codeinput">num_riders = 22;
 fprintf(<span class="string">'%d riders were approaching'</span>, num_riders)
 </pre><pre class="codeoutput">22 riders were approaching</pre><p>For <i>floating-point</i> numbers:</p><pre class="codeinput">num_riders = 2.5;
 fprintf(<span class="string">'%f riders were approaching'</span>, num_riders)
@@ -141,7 +151,7 @@ total_time = 49.329;
 </pre><pre class="codeoutput">mario completed the race in 49.3 seconds</pre><p>For numbers in the <i>scientific notation</i>, the <i>precision</i> specifies the number of significant digits to display. And we use <tt>%g</tt> instead of <tt>%f</tt>:</p><pre class="codeinput">Avogado_number = 6.022141e23;
 </pre><pre class="codeinput">fprintf(<span class="string">'0.3g'</span>, Avogado_number)
 </pre><pre class="codeoutput">0.3g</pre><pre class="codeinput">fprintf(<span class="string">'0.5g'</span>, Avogado_number)
-</pre><pre class="codeoutput">0.5g</pre><h2>Tabs and Newlines<a name="31"></a></h2><p>Special characters are available to insert <i>tabs</i> and <i>new lines</i> (or <i>line breaks</i>) in strings, using the <tt>\n</tt> character:</p><pre class="codeinput">lines = <span class="string">'Two riders were approaching \n The wind began to howl \n'</span>;
+</pre><pre class="codeoutput">0.5g</pre><h2>Tabs and Newlines<a name="33"></a></h2><p>Special characters are available to insert <i>tabs</i> and <i>new lines</i> (or <i>line breaks</i>) in strings, using the <tt>\n</tt> character:</p><pre class="codeinput">lines = <span class="string">'Two riders were approaching \n The wind began to howl \n'</span>;
 fprintf(lines)
 </pre><pre class="codeoutput">Two riders were approaching 
  The wind began to howl 
@@ -168,6 +178,17 @@ luigi lap time:    19.8</pre><p>We could do:</p><pre class="codeinput">fprintf(<
 </pre><pre class="codeoutput">mario lap time:	20.0
 luigi lap time:	19.9</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
+% Copyright 2015, Ashwin Srinath, All Rights Reserved
+% LICENSE: MIT (http://opensource.org/licenses/MIT)
+% (TL;DR) 
+% You can do whatever you want
+% with this code
+% as long as you include the original copyright
+% and license in their original sources.
+% I don't guarantee that
+% any of this code
+% serves any purpose whatsoever.
+
 %% Output with MATLAB
 % In this document, we'll learn
 % how to output and format _character strings_
