@@ -149,9 +149,9 @@ fprintf(<span class="string">'%2.7f riders were approaching'</span>, num_riders)
 total_time = 49.329;
 </pre><p>And we want to print the string:  <tt>'mario completed the race in 49.3 seconds'</tt></p><p>The appropriate command would be:</p><pre class="codeinput">fprintf(<span class="string">'%s completed the race in %0.1f seconds'</span>, player, total_time)
 </pre><pre class="codeoutput">mario completed the race in 49.3 seconds</pre><p>For numbers in the <i>scientific notation</i>, the <i>precision</i> specifies the number of significant digits to display. And we use <tt>%g</tt> instead of <tt>%f</tt>:</p><pre class="codeinput">Avogado_number = 6.022141e23;
-</pre><pre class="codeinput">fprintf(<span class="string">'0.3g'</span>, Avogado_number)
-</pre><pre class="codeoutput">0.3g</pre><pre class="codeinput">fprintf(<span class="string">'0.5g'</span>, Avogado_number)
-</pre><pre class="codeoutput">0.5g</pre><h2>Tabs and Newlines<a name="33"></a></h2><p>Special characters are available to insert <i>tabs</i> and <i>new lines</i> (or <i>line breaks</i>) in strings, using the <tt>\n</tt> character:</p><pre class="codeinput">lines = <span class="string">'Two riders were approaching \n The wind began to howl \n'</span>;
+</pre><pre class="codeinput">fprintf(<span class="string">'%0.3g'</span>, Avogado_number)
+</pre><pre class="codeoutput">6.02e+23</pre><pre class="codeinput">fprintf(<span class="string">'%0.5g'</span>, Avogado_number)
+</pre><pre class="codeoutput">6.0221e+23</pre><h2>Tabs and Newlines<a name="33"></a></h2><p>Special characters are available to insert <i>tabs</i> and <i>new lines</i> (or <i>line breaks</i>) in strings, using the <tt>\n</tt> character:</p><pre class="codeinput">lines = <span class="string">'Two riders were approaching \n The wind began to howl \n'</span>;
 fprintf(lines)
 </pre><pre class="codeoutput">Two riders were approaching 
  The wind began to howl 
@@ -360,10 +360,10 @@ fprintf('%s completed the race in %0.1f seconds', player, total_time)
 Avogado_number = 6.022141e23;
 
 %%
-fprintf('0.3g', Avogado_number)
+fprintf('%0.3g', Avogado_number)
 
 %%
-fprintf('0.5g', Avogado_number)
+fprintf('%0.5g', Avogado_number)
 
 %% Tabs and Newlines
 % Special characters are available to 

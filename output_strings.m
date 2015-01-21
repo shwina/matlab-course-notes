@@ -180,10 +180,10 @@ fprintf('%s completed the race in %0.1f seconds', player, total_time)
 Avogado_number = 6.022141e23;
 
 %%
-fprintf('0.3g', Avogado_number)
+fprintf('%0.3g', Avogado_number)
 
 %%
-fprintf('0.5g', Avogado_number)
+fprintf('%0.5g', Avogado_number)
 
 %% Tabs and Newlines
 % Special characters are available to 
