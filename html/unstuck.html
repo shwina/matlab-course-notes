@@ -65,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Getting Stuck</a></li><li><a href="#2">Introduction</a></li><li><a href="#12">Elementwise operations</a></li><li><a href="#18">Invalid access</a></li><li><a href="#21">Mixing up syntactical elements</a></li><li><a href="#23">Order of operations</a></li><li><a href="#25">Inappropriate use of a function</a></li><li><a href="#28">Data type problems</a></li><li><a href="#32">Tips for dealing with an error</a></li></ul></div><h2>Getting Stuck<a name="1"></a></h2><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Getting Stuck</a></li><li><a href="#2">Introduction</a></li><li><a href="#5">Variable naming</a></li><li><a href="#8">Size/dimension errors</a></li><li><a href="#12">Elementwise operations</a></li><li><a href="#18">Invalid access</a></li><li><a href="#21">Mixing up syntactical elements</a></li><li><a href="#23">Order of operations</a></li><li><a href="#25">Inappropriate use of a function</a></li><li><a href="#28">Data type problems</a></li><li><a href="#32">Tips for dealing with an error</a></li></ul></div><h2>Getting Stuck<a name="1"></a></h2><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
 <span class="comment">% LICENSE: MIT (http://opensource.org/licenses/MIT)</span>
 <span class="comment">% (TL;DR)</span>
 <span class="comment">% You can do whatever you want</span>
@@ -77,7 +77,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <span class="comment">% serves any purpose whatsoever.</span>
 </pre><pre class="codeoutput">Error: File: C:\Users\ashwin\Documents\workspace\matlab-course-notes\unstuck.m Line: 145 Column: 7
 Expression or statement is incorrect--possibly unbalanced (, {, or [.
-</pre><h2>Introduction<a name="2"></a></h2><p>Here's an excerpt from the book <i>Zen and the Art of Motorcyle Maintenance</i>:</p><p><i>"A screw sticks on a side cover assembly. You check the manual to see if there might be any special cause for this screw to come off so hard, but all it says is "Remove side cover plate" in that wonderful terse technical style that never tells you what you want to know. There's no earlier procedure left undone that might cause the cover screws to stick.</i></p><p><i>"This is the zero moment of consciousness. Stuck. No answer. Honked. Kaput. It's a miserable experience emotionally. You're losing time. You're incompetent. You don't know what you're doing. You should be ashamed of yourself. You should take the machine to a real mechanic who knows how to figure these things out.</i>"</p><p>Being <i>stuck</i> is a common scenario in programming. Writing a program is easy, writing a program that <i>works</i> is hard. You will almost always find that your code has a bug in it. If you're lucky, MATLAB will point the bug out and stop trying to run your code. If you're unlucky, your code will produce an answer, but the answer will be wrong. Generally, you "know" when your code is producing the wrong answer. In any case, you're <i>stuck</i>. And getting <i>unstuck</i> is embodied in the art of problem solving - part of what makes you an engineer and a scientist.</p><p>In this document, we'll learn about a few errors you might encounter in MATLAB, and how to recognize and fix them.</p><p>By far the most common error is misspelling a variable:</p><pre class="codeinput">T_initial = 20.0;
+</pre><h2>Introduction<a name="2"></a></h2><p>Here's an excerpt from the book <i>Zen and the Art of Motorcyle Maintenance</i>:</p><p><i>"A screw sticks on a side cover assembly. You check the manual to see if there might be any special cause for this screw to come off so hard, but all it says is "Remove side cover plate" in that wonderful terse technical style that never tells you what you want to know. There's no earlier procedure left undone that might cause the cover screws to stick.</i></p><p><i>"This is the zero moment of consciousness. Stuck. No answer. Honked. Kaput. It's a miserable experience emotionally. You're losing time. You're incompetent. You don't know what you're doing. You should be ashamed of yourself. You should take the machine to a real mechanic who knows how to figure these things out.</i>"</p><p>Being <i>stuck</i> is a common scenario in programming. Writing a program is easy, writing a program that <i>works</i> is hard. You will almost always find that your code has a bug in it. If you're lucky, MATLAB will point the bug out and stop trying to run your code. If you're unlucky, your code will produce an answer, but the answer will be wrong. Generally, you "know" when your code is producing the wrong answer. In any case, you're <i>stuck</i>. And getting <i>unstuck</i> is embodied in the art of problem solving - part of what makes you an engineer and a scientist.</p><p>In this document, we'll learn about a few errors you might encounter in MATLAB, and how to recognize and fix them.</p><h2>Variable naming<a name="5"></a></h2><p>By far the most common error is misspelling a variable:</p><pre class="codeinput">T_initial = 20.0;
 T_increase = 2.0;
 T_final = T_Initial + T_increase
 </pre><p>Using the wrong variable is another:</p><pre class="codeinput">m = 4.5;
@@ -85,7 +85,7 @@ C = 4.18;
 t = 4.0;
 DT = 20.0;
 Q = m*c*t
-</pre><p>Avoid these with more descriptive variable names, like <tt>time_taken</tt> and <tt>temperature_increase</tt>.</p><p>Another common mistake in MATLAB is to compute between vectors/matrices of incompatible sizes:</p><pre class="codeinput">a = [1.0, 2.5, 3.2, 4.8];
+</pre><p>Avoid these with more descriptive variable names, like <tt>time_taken</tt> and <tt>temperature_increase</tt>.</p><h2>Size/dimension errors<a name="8"></a></h2><p>Another common mistake in MATLAB is to compute between vectors/matrices of incompatible sizes:</p><pre class="codeinput">a = [1.0, 2.5, 3.2, 4.8];
 b = [2, 2, 2];
 
 a*b
@@ -110,7 +110,7 @@ A^3
 A(5,3)
 </pre><pre class="codeinput">A(3,1:7)
 </pre><p>Again, <tt>size</tt> should give you an idea of what you're doing wrong:</p><pre class="codeinput">size(A)
-</pre><h2>Mixing up syntactical elements<a name="21"></a></h2><p>Using square brackets instead of round ones and vice versa:</p><pre class="codeinput">A = (1, 2, 3; 4, 5, 6)
+</pre><h2>Mixing up syntactical elements<a name="21"></a></h2><p>For instance, using square brackets instead of round ones and vice versa:</p><pre class="codeinput">A = (1, 2, 3; 4, 5, 6)
 </pre><pre class="codeinput">A = [1, 2, 3; 4, 5, 6]
 A[1,1]
 </pre><h2>Order of operations<a name="23"></a></h2><p>Remember that MATLAB doesn't always perform calculations in the order <i>you</i> want:</p><pre class="codeinput">P = 10;
@@ -181,7 +181,7 @@ disp(num + 4)
 % about a few errors you might encounter in MATLAB, and how to
 % recognize and fix them.
 
-%%
+%% Variable naming
 % By far the most common error is
 % misspelling a variable:
 
@@ -201,7 +201,7 @@ Q = m*c*t
 % Avoid these with more descriptive variable
 % names, like |time_taken| and |temperature_increase|.
 
-%%
+%% Size/dimension errors
 % Another common mistake in MATLAB is to
 % compute between vectors/matrices of incompatible sizes:
 
@@ -273,7 +273,7 @@ size(A)
 
 %% Mixing up syntactical elements
 %
-% Using square brackets instead of 
+% For instance, using square brackets instead of 
 % round ones and vice versa:
 
 A = (1, 2, 3; 4, 5, 6)
