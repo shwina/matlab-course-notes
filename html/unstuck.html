@@ -75,9 +75,9 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <span class="comment">% I don't guarantee that</span>
 <span class="comment">% any of this code</span>
 <span class="comment">% serves any purpose whatsoever.</span>
-</pre><pre class="codeoutput">Error: File: C:\Users\ashwin\Documents\workspace\matlab-course-notes\unstuck.m Line: 151 Column: 7
+</pre><pre class="codeoutput">Error: File: C:\Users\ashwin\Documents\workspace\matlab-course-notes\unstuck.m Line: 158 Column: 7
 Expression or statement is incorrect--possibly unbalanced (, {, or [.
-</pre><h2>Introduction<a name="2"></a></h2><p>Here's an excerpt from the book <i>Zen and the Art of Motorcyle Maintenance</i>:</p><p><i>"A screw sticks on a side cover assembly. You check the manual to see if there might be any special cause for this screw to come off so hard, but all it says is "Remove side cover plate" in that wonderful terse technical style that never tells you what you want to know. There's no earlier procedure left undone that might cause the cover screws to stick.</i></p><p><i>"This is the zero moment of consciousness. Stuck. No answer. Honked. Kaput. It's a miserable experience emotionally. You're losing time. You're incompetent. You don't know what you're doing. You should be ashamed of yourself. You should take the machine to a real mechanic who knows how to figure these things out.</i>"</p><p>Being <i>stuck</i> is a common scenario in programming. There's no shame in being stuck; it happens everyday to the best, most experienced programmers. And you definitely don't need "expert help" in getting unstuck. It only takes the most basic problem solving skills, and it takes motivation - you have to <i>want</i> to fix your program.</p><p>Writing a program is easy, writing a program that <i>works</i> is hard. You will almost always find that your code has a bug in it. If you're lucky, MATLAB will point the bug out and stop trying to run your code. If you're unlucky, your code will produce an answer, but the answer will be wrong. Generally, you "know" when your code is producing the wrong answer. In any case, you're <i>stuck</i>. And getting <i>unstuck</i> is embodied in the art of problem solving - part of what makes you an engineer and a scientist.</p><p>In this document, we'll learn about a few errors you might encounter in MATLAB, and how to recognize and fix them.</p><h2>Variable naming<a name="5"></a></h2><p>By far the most common error is misspelling a variable:</p><pre class="codeinput">T_initial = 20.0;
+</pre><h2>Introduction<a name="2"></a></h2><p>Here's an excerpt from the book <i>Zen and the Art of Motorcyle Maintenance</i>:</p><p><i>"A screw sticks on a side cover assembly. You check the manual to see if there might be any special cause for this screw to come off so hard, but all it says is "Remove side cover plate" in that wonderful terse technical style that never tells you what you want to know. There's no earlier procedure left undone that might cause the cover screws to stick.</i></p><p><i>If you're experienced you'd probably apply a penetrating liquid and an impact driver at this point. But suppose you're inexperienced and you attach a self-locking plier wrench to the shank of your screwdriver and really twist it hard, a procedure you've had success with in the past, but which this time succeeds only in tearing the slot of the screw.</i></p><p><i>"This is the zero moment of consciousness. Stuck. No answer. Honked. Kaput. It's a miserable experience emotionally. You're losing time. You're incompetent. You don't know what you're doing. You should be ashamed of yourself. You should take the machine to a real mechanic who knows how to figure these things out.</i>"</p><p>Being <i>stuck</i> is a common scenario in programming. There's no shame in being stuck; it happens everyday to the best, most experienced programmers. And you definitely don't need "expert help" in getting unstuck. It only takes the most basic problem solving skills, and it takes motivation - you have to <i>want</i> to fix your program.</p><p>Writing a program is easy, writing a program that <i>works</i> is hard. You will almost always find that your code has a bug in it. If you're lucky, MATLAB will point the bug out and stop trying to run your code. If you're unlucky, your code will produce an answer, but the answer will be wrong. Generally, you "know" when your code is producing the wrong answer. In any case, you're <i>stuck</i>. And getting <i>unstuck</i> is embodied in the art of problem solving - part of what makes you an engineer and a scientist.</p><p>In this document, we'll learn about a few errors you might encounter in MATLAB, and how to recognize and fix them.</p><h2>Variable naming<a name="5"></a></h2><p>By far the most common error is misspelling a variable:</p><pre class="codeinput">T_initial = 20.0;
 T_increase = 2.0;
 T_final = T_Initial + T_increase
 </pre><p>Using the wrong variable is another:</p><pre class="codeinput">m = 4.5;
@@ -122,7 +122,7 @@ P*V/R*T
 </pre><pre class="codeinput">(P*V)/(RT)
 </pre><h2>Inappropriate use of a function<a name="25"></a></h2><p>Often, you might be using a function the wrong way:</p><pre class="codeinput">choice = menu({<span class="string">'Wario'</span>, <span class="string">'Mario'</span>, <span class="string">'Luigi'</span>});
 </pre><p>In this case, we're missing the first argument to <tt>choice</tt>:</p><pre class="codeinput">choice = menu(<span class="string">'Select a player'</span>, {<span class="string">'Wario'</span>, <span class="string">'Mario'</span>, <span class="string">'Luigi'</span>});
-</pre><p>Consult the documentation to make sure you're using the function appropriately:</p><pre class="codeinput">help <span class="string">choice</span>
+</pre><p>Consult the documentation to make sure you're using the function appropriately:</p><pre class="codeinput">help <span class="string">menu</span>
 </pre><h2>Data type problems<a name="28"></a></h2><p>Keep track of what the <i>data type</i> of a value is:</p><pre class="codeinput">entry = inputdlg(<span class="string">'Enter maximum temperature: '</span>);
 disp(entry + 4)
 </pre><p>Since <tt>inputdlg</tt> returns a <tt>cell array</tt>, you can't add it to <tt>4</tt>, which is a <i>number</i>.</p><pre class="codeinput">class(entry)
@@ -157,6 +157,13 @@ disp(num + 4)
 % that never tells you what you want to know.
 % There's no earlier procedure left undone that might cause the cover
 % screws to stick._
+%
+% _If you're experienced you'd probably apply a 
+% penetrating liquid and an impact driver at this point.
+% But suppose you're inexperienced and you attach a self-locking
+% plier wrench to the shank of your screwdriver and really twist it hard,
+% a procedure you've had success with in the past,
+% but which this time succeeds only in tearing the slot of the screw._
 %
 % _"This is the zero moment of consciousness. Stuck.
 % No answer. Honked. Kaput. It's a miserable experience emotionally.
@@ -319,7 +326,7 @@ choice = menu('Select a player', {'Wario', 'Mario', 'Luigi'});
 % Consult the documentation to make sure you're using
 % the function appropriately:
 
-help choice
+help menu
 
 %% Data type problems
 %

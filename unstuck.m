@@ -24,6 +24,13 @@
 % There's no earlier procedure left undone that might cause the cover
 % screws to stick._
 %
+% _If you're experienced you'd probably apply a 
+% penetrating liquid and an impact driver at this point.
+% But suppose you're inexperienced and you attach a self-locking
+% plier wrench to the shank of your screwdriver and really twist it hard,
+% a procedure you've had success with in the past,
+% but which this time succeeds only in tearing the slot of the screw._
+%
 % _"This is the zero moment of consciousness. Stuck.
 % No answer. Honked. Kaput. It's a miserable experience emotionally.
 % You're losing time. You're incompetent. You don't know what you're doing.
@@ -185,7 +192,7 @@ choice = menu('Select a player', {'Wario', 'Mario', 'Luigi'});
 % Consult the documentation to make sure you're using
 % the function appropriately:
 
-help choice
+help menu
 
 %% Data type problems
 %
