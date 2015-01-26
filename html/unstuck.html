@@ -75,9 +75,9 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <span class="comment">% I don't guarantee that</span>
 <span class="comment">% any of this code</span>
 <span class="comment">% serves any purpose whatsoever.</span>
-</pre><pre class="codeoutput">Error: File: C:\Users\ashwin\Documents\workspace\matlab-course-notes\unstuck.m Line: 145 Column: 7
+</pre><pre class="codeoutput">Error: File: C:\Users\ashwin\Documents\workspace\matlab-course-notes\unstuck.m Line: 151 Column: 7
 Expression or statement is incorrect--possibly unbalanced (, {, or [.
-</pre><h2>Introduction<a name="2"></a></h2><p>Here's an excerpt from the book <i>Zen and the Art of Motorcyle Maintenance</i>:</p><p><i>"A screw sticks on a side cover assembly. You check the manual to see if there might be any special cause for this screw to come off so hard, but all it says is "Remove side cover plate" in that wonderful terse technical style that never tells you what you want to know. There's no earlier procedure left undone that might cause the cover screws to stick.</i></p><p><i>"This is the zero moment of consciousness. Stuck. No answer. Honked. Kaput. It's a miserable experience emotionally. You're losing time. You're incompetent. You don't know what you're doing. You should be ashamed of yourself. You should take the machine to a real mechanic who knows how to figure these things out.</i>"</p><p>Being <i>stuck</i> is a common scenario in programming. Writing a program is easy, writing a program that <i>works</i> is hard. You will almost always find that your code has a bug in it. If you're lucky, MATLAB will point the bug out and stop trying to run your code. If you're unlucky, your code will produce an answer, but the answer will be wrong. Generally, you "know" when your code is producing the wrong answer. In any case, you're <i>stuck</i>. And getting <i>unstuck</i> is embodied in the art of problem solving - part of what makes you an engineer and a scientist.</p><p>In this document, we'll learn about a few errors you might encounter in MATLAB, and how to recognize and fix them.</p><h2>Variable naming<a name="5"></a></h2><p>By far the most common error is misspelling a variable:</p><pre class="codeinput">T_initial = 20.0;
+</pre><h2>Introduction<a name="2"></a></h2><p>Here's an excerpt from the book <i>Zen and the Art of Motorcyle Maintenance</i>:</p><p><i>"A screw sticks on a side cover assembly. You check the manual to see if there might be any special cause for this screw to come off so hard, but all it says is "Remove side cover plate" in that wonderful terse technical style that never tells you what you want to know. There's no earlier procedure left undone that might cause the cover screws to stick.</i></p><p><i>"This is the zero moment of consciousness. Stuck. No answer. Honked. Kaput. It's a miserable experience emotionally. You're losing time. You're incompetent. You don't know what you're doing. You should be ashamed of yourself. You should take the machine to a real mechanic who knows how to figure these things out.</i>"</p><p>Being <i>stuck</i> is a common scenario in programming. There's no shame in being stuck; it happens everyday to the best, most experienced programmers. And you definitely don't need "expert help" in getting unstuck. It only takes the most basic problem solving skills, and it takes motivation - you have to <i>want</i> to fix your program.</p><p>Writing a program is easy, writing a program that <i>works</i> is hard. You will almost always find that your code has a bug in it. If you're lucky, MATLAB will point the bug out and stop trying to run your code. If you're unlucky, your code will produce an answer, but the answer will be wrong. Generally, you "know" when your code is producing the wrong answer. In any case, you're <i>stuck</i>. And getting <i>unstuck</i> is embodied in the art of problem solving - part of what makes you an engineer and a scientist.</p><p>In this document, we'll learn about a few errors you might encounter in MATLAB, and how to recognize and fix them.</p><h2>Variable naming<a name="5"></a></h2><p>By far the most common error is misspelling a variable:</p><pre class="codeinput">T_initial = 20.0;
 T_increase = 2.0;
 T_final = T_Initial + T_increase
 </pre><p>Using the wrong variable is another:</p><pre class="codeinput">m = 4.5;
@@ -165,7 +165,13 @@ disp(num + 4)
 % real mechanic who knows how to figure these things out._"
 
 %%
-% Being _stuck_ is a common scenario in programming. Writing a program
+% Being _stuck_ is a common scenario in programming. There's no shame
+% in being stuck; it happens everyday to the best, most experienced
+% programmers. And you definitely don't need "expert help" in getting
+% unstuck. It only takes the most basic problem solving skills, and
+% it takes motivation - you have to _want_ to fix your program.
+%
+% Writing a program
 % is easy, writing a program that _works_ is hard. You will almost
 % always find that your code has a bug in it. If you're lucky, MATLAB
 % will point the bug out and stop trying to run your code.

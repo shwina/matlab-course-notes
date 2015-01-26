@@ -31,7 +31,13 @@
 % real mechanic who knows how to figure these things out._"
 
 %%
-% Being _stuck_ is a common scenario in programming. Writing a program
+% Being _stuck_ is a common scenario in programming. There's no shame
+% in being stuck; it happens everyday to the best, most experienced
+% programmers. And you definitely don't need "expert help" in getting
+% unstuck. It only takes the most basic problem solving skills, and
+% it takes motivation - you have to _want_ to fix your program.
+%
+% Writing a program
 % is easy, writing a program that _works_ is hard. You will almost
 % always find that your code has a bug in it. If you're lucky, MATLAB
 % will point the bug out and stop trying to run your code.
