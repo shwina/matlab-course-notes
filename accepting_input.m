@@ -134,6 +134,6 @@ a{3}
 % a _menu_ using the |menu| function:
 %
 %  players = {'Mario', 'Luigi', 'Bowser', 'Yoshi'};
-%  choice = menu(players)
+%  choice = menu('Select a player!', players)
 %  disp(choice)
 %  disp(players{choice})
