@@ -1,0 +1,504 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>conditionals</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-02-11"><meta name="DC.source" content="conditionals.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, tt, code { font-size:12px; }
+pre { margin:0px 0px 20px; }
+pre.error { color:red; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Conditional Statements in MATLAB</a></li><li><a href="#3">True and False</a></li><li><a href="#7">Relational operators</a></li><li><a href="#14">Building more complex conditions</a></li><li><a href="#19">Conditions with vectors:</a></li><li><a href="#28">Checking for equality of strings:</a></li><li><a href="#36">Making decisions</a></li><li><a href="#44">A note about floats</a></li></ul></div><h2>Conditional Statements in MATLAB<a name="1"></a></h2><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
+<span class="comment">% LICENSE: MIT (http://opensource.org/licenses/MIT)</span>
+<span class="comment">% (TL;DR)</span>
+<span class="comment">% You can do whatever you want</span>
+<span class="comment">% with this code</span>
+<span class="comment">% as long as you include the original copyright</span>
+<span class="comment">% and license in their original sources.</span>
+<span class="comment">% I don't guarantee that</span>
+<span class="comment">% any of this code</span>
+<span class="comment">% serves any purpose whatsoever.</span>
+</pre><p>So far, we've learned how to manipulate data, do I/O and write functions in MATLAB. But our programs do the same thing every time, regardless of what data they are given. We want to write programs that make <i>choices</i> based on the data they are given, and to do that, we have to learn about <i>conditional statements</i>.</p><h2>True and False<a name="3"></a></h2><pre class="codeinput">3 == 4
+</pre><pre class="codeoutput">
+ans =
+
+     0
+
+</pre><pre class="codeinput">3 == 3
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><p>In MATLAB, we can check for the <i>equality</i> of two values by using the <tt>==</tt> operator. If the values are equal, MATLAB returns <tt>1</tt>. If the values are not equal, MATLAB returns <tt>0</tt>. In MATLAB, and many other languages, the numbers <tt>1</tt> and <tt>0</tt> are used to represent "True" and "False" respectively.</p><h2>Relational operators<a name="7"></a></h2><p>There are several operators like <tt>==</tt> that let us check for different conditions:</p><pre class="codeinput">a = 21.4;
+</pre><pre class="codeinput">a &gt; 5 <span class="comment">% greater than</span>
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><pre class="codeinput">a &lt; 16 <span class="comment">% less than</span>
+</pre><pre class="codeoutput">
+ans =
+
+     0
+
+</pre><pre class="codeinput">a &gt;= 20 <span class="comment">% greater than or equal to</span>
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><pre class="codeinput">a &lt;= 20 <span class="comment">% lesser than or equal to</span>
+</pre><pre class="codeoutput">
+ans =
+
+     0
+
+</pre><pre class="codeinput">a ~= 10 <span class="comment">% not equal to</span>
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><h2>Building more complex conditions<a name="14"></a></h2><p>We can check if more complicated conditions are "true" or "false" by using so-called <i>logical</i> operators like AND (<tt>&amp;&amp;</tt>) and OR (||):</p><pre class="codeinput">a = 4;
+b = 2.4;
+</pre><pre class="codeinput">a &gt;= 4 &amp;&amp; b &lt; 4
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><pre class="codeinput">a &gt;= 4 &amp;&amp; b &lt; 2
+</pre><pre class="codeoutput">
+ans =
+
+     0
+
+</pre><pre class="codeinput">a &gt;= 4 || b &lt; 2
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><pre class="codeinput">(a &gt;= 4 &amp;&amp; b &lt; 2) || (a-b &gt; 0)
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><h2>Conditions with vectors:<a name="19"></a></h2><p>We can also use <tt>==</tt>, <tt>&lt;=</tt>, etc., with <i>vectors</i>, if they are the same length:</p><pre class="codeinput">a = [1.0, 2.5, -6.0];
+b = [1.0, 3.5, -12.0];
+</pre><pre class="codeinput">a == b
+</pre><pre class="codeoutput">
+ans =
+
+     1     0     0
+
+</pre><pre class="codeinput">a &gt; b
+</pre><pre class="codeoutput">
+ans =
+
+     0     0     1
+
+</pre><pre class="codeinput">a &lt; b
+</pre><pre class="codeoutput">
+ans =
+
+     0     1     0
+
+</pre><p>and there are special functions to let us do common checks like:</p><pre class="codeinput">all(a &gt; 0) <span class="comment">% check if all elements are greater than 0</span>
+</pre><pre class="codeoutput">
+ans =
+
+     0
+
+</pre><pre class="codeinput">any(a &gt; 0) <span class="comment">% check if any element is greater than 0</span>
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><pre class="codeinput">all(a &gt; 0) &amp;&amp; any(a &gt; 5)
+</pre><pre class="codeoutput">
+ans =
+
+     0
+
+</pre><pre class="codeinput">a = [1,2,3];
+b = [1,2,3];
+
+all(a == b); <span class="comment">% effectively checks if a and b represent the same vector.</span>
+</pre><p>These ideas extend in a straightforward way to matrices as well.</p><h2>Checking for equality of strings:<a name="28"></a></h2><p>Sometimes, we'd like to check for the equality of two strings:</p><pre class="codeinput"><span class="string">'foo'</span> == <span class="string">'foo'</span>
+</pre><pre class="codeoutput">
+ans =
+
+     1     1     1
+
+</pre><pre class="codeinput"><span class="string">'foo'</span> == <span class="string">'bar'</span>
+</pre><pre class="codeoutput">
+ans =
+
+     0     0     0
+
+</pre><p>'foo' == 'penguin'</p><p>Strings are just vectors of characters, and it doesn't make sense to compare vectors of unequal lengths. Even if the strings <i>are</i> of equal lengths, this is not a very useful way to check for their equality. The correct way is to use <tt>strcmp</tt> (string compare):</p><pre class="codeinput">strcmp(<span class="string">'foo'</span>, <span class="string">'foo'</span>)
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><pre class="codeinput">strcmp(<span class="string">'foo'</span>, <span class="string">'penguin'</span>)
+</pre><pre class="codeoutput">
+ans =
+
+     0
+
+</pre><pre class="codeinput">strcmp(<span class="string">'foo'</span>, <span class="string">'Foo'</span>)
+</pre><pre class="codeoutput">
+ans =
+
+     0
+
+</pre><p>If we don't care about capitalization (e.g., we think of <tt>'Foo'</tt>, <tt>'FOO'</tt> and <tt>'foo'</tt> as equal):</p><pre class="codeinput">strcmpi(<span class="string">'Foo'</span>, <span class="string">'FOO'</span>)
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><h2>Making decisions<a name="36"></a></h2><p>We've learned how to check for the "truth" of different expressions. And, we've learned how to build complex conditions using <tt>&amp;&amp;</tt> and ||. We've also learned to write conditions involving vectors and strings.</p><p>Now, we will learn how to write programs that <i>make choices</i> based on whether some conditions are true or false.</p><pre>a = input('Input a number: ');</pre><pre>if a &gt; 0
+    disp('a is positive');
+else
+    disp('a is negative');
+end</pre><p>The above construct is called an IF-ELSE statement. It starts with the keyword <tt>if</tt>, followed by a condition. If the condition is true, then the code under the <tt>if</tt> block is executed. If the condition is false, then the code under the <tt>else</tt> block is executed.</p><p>We can chain several conditions using <tt>elseif</tt>, like so:</p><pre>a = input('Input a number: ');</pre><pre>if a &gt; 0
+    disp('a is positive');
+elseif a &lt; 0
+    disp('a is negative');
+else
+    disp('a is zero');
+end</pre><p>If you omit the <tt>else</tt> block, MATLAB will do nothing if the test evaluates to "false":</p><pre>a = input('Input a number: ');</pre><pre>if a &gt; 0
+    disp('a is positive');
+end</pre><h2>A note about floats<a name="44"></a></h2><p>Writing equalities with floating-point, i.e., "decimal" numbers is tricky:</p><pre class="codeinput">a = 1/3;
+b = 0.33333333;
+a == b
+</pre><pre class="codeoutput">
+ans =
+
+     0
+
+</pre><p>Sometimes, we don't want MATLAB to be too fussy about precision. In this case, we can do something like this:</p><pre class="codeinput">tolerance = 1e-6;
+a = 1/3;
+b = 0.33333333;
+
+abs(a - b) &lt;= tolerance
+</pre><pre class="codeoutput">
+ans =
+
+     1
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Conditional Statements in MATLAB
+
+% Copyright 2015, Ashwin Srinath, All Rights Reserved
+% LICENSE: MIT (http://opensource.org/licenses/MIT)
+% (TL;DR) 
+% You can do whatever you want
+% with this code
+% as long as you include the original copyright
+% and license in their original sources.
+% I don't guarantee that
+% any of this code
+% serves any purpose whatsoever.
+
+%%
+% So far, we've learned how to manipulate data,
+% do I/O and write functions in MATLAB. But
+% our programs do the same thing every time,
+% regardless of what data they are given. We
+% want to write programs that make _choices_ based
+% on the data they are given, and to do that,
+% we have to learn about _conditional statements_.
+
+%% True and False
+%
+
+%%
+3 == 4
+
+%%
+3 == 3
+
+%%
+% In MATLAB, we can check for the _equality_
+% of two values by using the |==| operator.
+% If the values are equal, MATLAB returns |1|.
+% If the values are not equal, MATLAB returns |0|.
+% In MATLAB, and many other languages, the numbers
+% |1| and |0| are used to represent "True" and "False"
+% respectively.
+
+%% Relational operators
+% There are several operators like |==| that let
+% us check for different conditions:
+
+%%
+a = 21.4;
+
+%%
+a > 5 % greater than
+
+%%
+a < 16 % less than
+
+%%
+
+a >= 20 % greater than or equal to
+
+%%
+
+a <= 20 % lesser than or equal to
+
+%%
+
+a ~= 10 % not equal to
+
+%% Building more complex conditions
+% We can check if more complicated conditions
+% are "true" or "false" by using so-called
+% _logical_ operators like AND (|&&|) and
+% OR (||||):
+
+a = 4;
+b = 2.4;
+
+%%
+a >= 4 && b < 4
+
+%%
+a >= 4 && b < 2
+
+%%
+a >= 4 || b < 2
+
+%%
+
+(a >= 4 && b < 2) || (a-b > 0)
+
+%% Conditions with vectors:
+%
+% We can also use |==|, |<=|, etc., with
+% _vectors_, if they are the same length:
+
+a = [1.0, 2.5, -6.0];
+b = [1.0, 3.5, -12.0];
+
+%%
+a == b
+
+%%
+a > b
+
+%%
+a < b
+
+%%
+% and there are special functions
+% to let us do common checks like:
+
+all(a > 0) % check if all elements are greater than 0
+
+%%
+
+any(a > 0) % check if any element is greater than 0
+
+%%
+
+all(a > 0) && any(a > 5)
+
+%%
+a = [1,2,3];
+b = [1,2,3];
+
+all(a == b); % effectively checks if a and b represent the same vector.
+
+%%
+% These ideas extend in a straightforward way to
+% matrices as well.
+
+%% Checking for equality of strings:
+%
+% Sometimes, we'd like to check for the equality
+% of two strings:
+
+'foo' == 'foo'
+
+%%
+'foo' == 'bar'
+
+%%
+% 'foo' == 'penguin'
+
+%%
+% Strings are just
+% vectors of characters, and it doesn't make
+% sense to compare vectors of unequal lengths.
+% Even if the strings _are_ of equal lengths,
+% this is not a very useful way to check for their
+% equality.
+% The correct way is to use |strcmp| (string compare):
+
+%%
+
+strcmp('foo', 'foo')
+
+%%
+
+strcmp('foo', 'penguin')
+
+%%
+
+strcmp('foo', 'Foo')
+
+%%
+% If we don't care about capitalization (e.g., we
+% think of |'Foo'|, |'FOO'| and |'foo'| as equal):
+
+strcmpi('Foo', 'FOO')
+
+
+%% Making decisions
+%
+% We've learned how to check for the "truth"
+% of different expressions. And, we've learned how to
+% build complex conditions using |&&| and
+% ||||. We've also learned to write conditions
+% involving vectors and strings.
+%
+% Now, we will learn how to write programs
+% that _make choices_ based on whether some
+% conditions are true or false.
+
+%%
+
+%%
+%  a = input('Input a number: ');
+%
+%  if a > 0
+%      disp('a is positive');
+%  else
+%      disp('a is negative');
+%  end
+
+%%
+% The above construct is called an IF-ELSE statement.
+% It starts with the keyword |if|, followed by a
+% condition. If the condition is true, then the code
+% under the |if| block is executed. If the condition
+% is false, then the code under the |else| block
+% is executed.
+
+%%
+% We can chain several conditions using |elseif|,
+% like so:
+
+%%
+%  a = input('Input a number: ');
+%
+%  if a > 0
+%      disp('a is positive');
+%  elseif a < 0
+%      disp('a is negative');
+%  else
+%      disp('a is zero');
+%  end
+
+%%
+% If you omit the |else| block, MATLAB will
+% do nothing if the test evaluates to "false":
+
+%%
+%  a = input('Input a number: ');
+%
+%  if a > 0
+%      disp('a is positive');
+%  end
+
+%% A note about floats
+% Writing equalities with floating-point, i.e., "decimal"
+% numbers is tricky:
+
+a = 1/3;
+b = 0.33333333;
+a == b
+
+%%
+% Sometimes, we don't want MATLAB to be
+% too fussy about precision. In this case, we can
+% do something like this:
+
+tolerance = 1e-6;
+a = 1/3;
+b = 0.33333333;
+
+abs(a - b) <= tolerance
+
+
+##### SOURCE END #####
+--></body></html>
