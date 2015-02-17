@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>errors_and_warnings</title><meta name="generator" content="MATLAB 8.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-02-16"><meta name="DC.source" content="errors_and_warnings.m"><style type="text/css">
+      --><title>errors_and_warnings</title><meta name="generator" content="MATLAB 8.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-02-17"><meta name="DC.source" content="errors_and_warnings.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -81,12 +81,12 @@ choice = menu(<span class="string">'Select a player'</span>, players);
 fprintf(<span class="string">'You chose %s\n'</span>, players{choice})
 </pre><p>This will work fine if the user makes a selection, but what if she closes the menu window? Run the code above, but this time, close the menu window when it appears. You can check that the variable <tt>choice</tt> will then be zero. In that case, the <tt>fprintf</tt> statement will print the following error:</p><pre>Subscript indices must either be real positive integers or logicals.</pre><p>This is because <tt>players{choice}</tt> is now <tt>players{0}</tt>, and that doesn't make any sense.</p><p>When the program is run, and it fails, the error message is actually quite cryptic and doesn't really do a very good job of explaining what exactly is wrong. A <i>much</i> more helpful error message, for instance, would be</p><pre>Nothing was selected from the menu!</pre><p>In fact, by now, you've probably seen this sort of thing in a <i>lot</i> of your programs. When something is wrong, MATLAB seemingly prints an entirely irrelevant error message. It's very important to understand <i>why</i>.</p><h2>Errors<a name="9"></a></h2><p>In the script above, we're not catching the problem where it <i>arises</i>. In this case, the problem arises in this line of code:</p><pre class="codeinput">choice = menu(<span class="string">'Select a player'</span>, players);
 </pre><p>But MATLAB doesn't realize there's a problem till it tries to run this:</p><pre class="codeinput">fprintf(<span class="string">'You chose %s\n'</span>, players{choice})
-</pre><p>To make our program handle the situation more elegantly, we need to learn how to <i>raise an error</i> in appropriate place. The <tt>error</tt> function let's us display an error message to the command window, and stops the programs execution immediately. We can use it as follows:</p><pre class="codeinput">choice = menu(<span class="string">'Select a player'</span>, players);
+</pre><p>To make our program handle the situation more elegantly, we need to learn how to <i>raise an error</i> in the appropriate place. The <tt>error</tt> function let's us display an error message to the command window, and stops the programs execution immediately. We can use it as follows:</p><pre class="codeinput">choice = menu(<span class="string">'Select a player'</span>, players);
 <span class="keyword">if</span> choice &lt; 1
    error(<span class="string">'Nothing was selected from the menu!'</span>);
 <span class="keyword">end</span>
 fprintf(<span class="string">'You chose %s\n'</span>, players{choice})
-</pre><p>Now, our program deals with the problem much more smartly; if there's a error with the user input, it catches it in the right place, displays a useful error message, and stops executing immediately.</p><h2>Warnings<a name="16"></a></h2><p>Sometimes, instead of having our programs print an error and stop, we'd rather have our programs <i>deal</i> with the problem, and continue running. In these cases, it's probably a good idea to let the user know this is happening. The <tt>warning</tt> function let's us do this:</p><pre class="codeinput">players = {<span class="string">'Mario'</span>, <span class="string">'Luigi'</span>, <span class="string">'Bowser'</span>, <span class="string">'Yoshi'</span>};
+</pre><p>Now, our program handles the problem much more smartly; if there's a error with the user input, it catches it in the right place, displays a useful error message, and stops executing immediately.</p><h2>Warnings<a name="16"></a></h2><p>Sometimes, instead of having our programs print an error and stop, we'd rather have our programs <i>deal</i> with the problem, and continue running. In these cases, it's probably a good idea to let the user know this is happening. The <tt>warning</tt> function let's us do this:</p><pre class="codeinput">players = {<span class="string">'Mario'</span>, <span class="string">'Luigi'</span>, <span class="string">'Bowser'</span>, <span class="string">'Yoshi'</span>};
 choice = menu(<span class="string">'Select a player'</span>, players);
 <span class="keyword">if</span> choice &lt; 1
    warning(<span class="string">'Nothing was selected from the menu; choosing default Mario!'</span>);
@@ -176,7 +176,7 @@ fprintf('You chose %s\n', players{choice})
 %%
 % To make our program handle the situation more
 % elegantly, we need to learn how to _raise an error_ in
-% appropriate place.
+% the appropriate place.
 % The |error| function let's us display an error
 % message to the command window,
 % and stops the programs execution immediately.
@@ -190,7 +190,7 @@ end
 fprintf('You chose %s\n', players{choice})
 
 %%
-% Now, our program deals with the problem much
+% Now, our program handles the problem much
 % more smartly; if there's a error with the
 % user input, it catches it in the right place,
 % displays a useful error message, and
