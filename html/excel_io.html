@@ -6,7 +6,7 @@
    <!--
 This HTML was auto-generated from MATLAB code.
 To make changes, update the MATLAB code and republish this document.
-      --><title>excel_io</title><meta name="generator" content="MATLAB 8.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-02-22"><meta name="DC.source" content="excel_io.m"><style type="text/css">
+      --><title>excel_io</title><meta name="generator" content="MATLAB 8.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-02-22"><meta name="DC.source" content="excel_io.m"><style type="text/css">
 html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
 
 html { min-height:100%; margin-bottom:1px; }
@@ -23,7 +23,7 @@ a:visited { color:#004aa0; text-decoration:none; }
 
 p { padding:0px; margin:0px 0px 20px; }
 img { padding:0px; margin:0px 0px 20px; border:none; }
-p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+p img, pre img, tt img, li img { margin-bottom:0px; } 
 
 ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
 ul li { padding:0px; margin:0px 0px 7px 0px; }
@@ -38,12 +38,11 @@ ol li ul li { list-style:square; }
 
 .content { font-size:1.2em; line-height:140%; padding: 20px; }
 
-pre, code { font-size:12px; }
-tt { font-size: 1.2em; }
+pre, tt, code { font-size:12px; }
 pre { margin:0px 0px 20px; }
+pre.error { color:red; }
 pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
 pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
-pre.error { color:red; }
 
 @media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
 
@@ -66,7 +65,7 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 
 
 
-  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Excel Input and Output</a></li></ul></div><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#2">Excel Input and Output</a></li><li><a href="#3">Reading Data from Excel Files</a></li><li><a href="#17">Writing Data to Excel Files</a></li></ul></div><pre class="codeinput"><span class="comment">% Copyright 2015, Ashwin Srinath, All Rights Reserved</span>
 <span class="comment">% LICENSE: MIT (http://opensource.org/licenses/MIT)</span>
 <span class="comment">% (TL;DR)</span>
 <span class="comment">% You can do whatever you want</span>
@@ -76,16 +75,17 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
 <span class="comment">% I don't guarantee that</span>
 <span class="comment">% any of this code</span>
 <span class="comment">% serves any purpose whatsoever.</span>
-</pre><h2>Excel Input and Output<a name="2"></a></h2><p>Here's the data in the file <tt>RaceResults.xlsx</tt>:</p><p>
+</pre><h2>Excel Input and Output<a name="2"></a></h2><h2>Reading Data from Excel Files<a name="3"></a></h2><p>Here's the data in the file <tt>RaceResults.xlsx</tt>:</p><p>
 <img src="../mariokart_data_screenshot.png">
 </p><p>We notice that the data is a combination of both numbers and text, and we'd like to load this data into MATLAB. To do this, we will use the <tt>xlsread</tt> function:</p><pre class="codeinput">[num, txt] = xlsread(<span class="string">'RaceResults.xlsx'</span>);
-</pre><p><tt>xlsread</tt> returns two values, <tt>num</tt> and <tt>txt</tt>.</p><p>1. <tt>num</tt> is a <b>matrix</b> containing all the numeric data 2. <tt>txt</tt> is a <b>cell array</b> containing all the text data</p><p>To understand what goes in <tt>num</tt>, look at the spreadsheet, and draw the smallest rectangle that holds <b>all</b> the numeric values:</p><p>
+</pre><p><tt>xlsread</tt> returns two values, <tt>num</tt> and <tt>txt</tt>.</p><p>1. <tt>num</tt> is a <b>matrix</b> containing all the numeric data</p><p>2. <tt>txt</tt> is a <b>cell array</b> containing all the text data</p><p>To understand what goes in <tt>num</tt>, look at the spreadsheet, and draw the smallest rectangle that holds <b>all</b> the numeric values:</p><p>
 <img src="../mariokart_data_num.png">
 </p><p>MATLAB will put the values inside this rectangle in the matrix <tt>num</tt>. For anything in the rectangle that is <i>not</i> numeric data, MATLAB will put <tt>NaN</tt>. Thus, we have the following result for <tt>num</tt>:</p><pre class="codeinput">disp(num)
 </pre><pre class="codeoutput">    1.0000       NaN   22.1000   22.3000   24.2000   25.5000   16.2000
     2.0000       NaN   21.7000   18.2000   23.2000   21.7000   19.0000
     3.0000       NaN   23.4000   24.4000   25.2000   16.7000   18.1000
     4.0000       NaN   19.6000   19.2000   25.0000   19.3000   21.1000
+    5.0000       NaN   18.1000   18.9000   22.4000   23.6000   17.1000
 
 </pre><p>To understand what goes in <tt>txt</tt>, look at the spreadsheet, and draw the smallest rectangle that holds <b>all</b> the text data:</p><p>
 <img src="../mariokart_screenshot_txt.png">
@@ -98,11 +98,13 @@ table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px soli
     ''                       'Luigi'     ''        ''        ''        ''    
     ''                       'Bowser'    ''        ''        ''        ''    
     ''                       'Yoshi'     ''        ''        ''        ''    
+    ''                       'Koopa'     ''        ''        ''        ''    
 
   Column 7
 
     ''    
     'Lap5'
+    ''    
     ''    
     ''    
     ''    
@@ -116,6 +118,7 @@ lap_times =
    21.7000   18.2000   23.2000   21.7000   19.0000
    23.4000   24.4000   25.2000   16.7000   18.1000
    19.6000   19.2000   25.0000   19.3000   21.1000
+   18.1000   18.9000   22.4000   23.6000   17.1000
 
 </pre><p>And let's say we want to store the player names into a separate cell array:</p><pre class="codeinput">player_names = txt(3:end, 2)
 </pre><pre class="codeoutput">
@@ -125,8 +128,19 @@ player_names =
     'Luigi'
     'Bowser'
     'Yoshi'
+    'Koopa'
 
-</pre><p><b>Remember, when you access values from a cell array using round brackets <tt>()</tt>, the values are returned in a cell array</b>. Since we want <tt>player_names</tt> to be a cell array of strings, we use round brackets to access values from <tt>txt</tt>.</p><p>Don't confuse this with using curly brackets <tt>{}</tt> to access values from a cell array, which <i>doesn't</i> put the values in a new cell array.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014b</a><br></p></div><!--
+</pre><p><b>Remember, when you access values from a cell array using round brackets <tt>()</tt>, the values are returned in a cell array</b>. Since we want <tt>player_names</tt> to be a cell array of strings, we use round brackets to access values from <tt>txt</tt>.</p><p>Don't confuse this with using curly brackets <tt>{}</tt> to access values from a cell array, which <i>doesn't</i> put values in a new cell array.</p><h2>Writing Data to Excel Files<a name="17"></a></h2><p>Let's say we have some new data that we'd like to write into <tt>RaceResults.xlsx</tt>:</p><pre class="codeinput">new_name = {<span class="string">'Koopa'</span>};
+new_lap_times = [18.1, 18.9, 22.4, 23.6, 17.1];
+</pre><p>We can do this as follows:</p><pre class="codeinput">xlswrite(<span class="string">'RaceResults.xlsx'</span>, 5, 1, <span class="string">'A7'</span>);
+xlswrite(<span class="string">'RaceResults.xlsx'</span>, new_name, 1, <span class="string">'B7'</span>);
+xlswrite(<span class="string">'RaceResults.xlsx'</span>, new_lap_times, 1, <span class="string">'C7'</span>);
+</pre><p>Now have a look at <tt>RaceResults.xlsx</tt>:</p><p>
+<img src="../mariokart_data_new.png">
+</p><p>The line</p><pre class="codeinput">xlswrite(<span class="string">'RaceResults.xlsx'</span>, 5, 1, <span class="string">'A7'</span>);
+</pre><p>tells MATLAB we want to write the number <tt>5</tt> to <tt>RaceResults.xlsx</tt>, in Sheet <tt>1</tt>, Cell <tt>A7</tt>.</p><p>Similarly, the line</p><pre class="codeinput">xlswrite(<span class="string">'RaceResults.xlsx'</span>, new_name, 1, <span class="string">'B7'</span>);
+</pre><p>tells MATLAB we want to write the cell array <tt>new_name</tt> to <tt>RaceResults.xlsx</tt>, in Sheet <tt>1</tt>, Cell <tt>B7</tt>. Remember, when you're writing a string, or a collection of strings to an excel file, you need to put them in a cell array first. That's why <tt>new_name</tt> is <tt>{'Koopa'}</tt>, and not <tt>'Koopa'</tt>.</p><p>And finally, the line</p><pre class="codeinput">xlswrite(<span class="string">'RaceResults.xlsx'</span>, new_lap_times, 1, <span class="string">'C7'</span>);
+</pre><p>tells MATLAB we want to write the vector <tt>new_lap_times</tt> to <tt>RaceResults.xlsx</tt>, in Sheet <tt>1</tt> and beginning at Cell <tt>C7</tt>.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2013a</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 % Copyright 2015, Ashwin Srinath, All Rights Reserved
 % LICENSE: MIT (http://opensource.org/licenses/MIT)
@@ -141,7 +155,7 @@ player_names =
 
 %% Excel Input and Output
 
-%% 
+%% Reading Data from Excel Files
 % Here's the data in the file |RaceResults.xlsx|:
 
 %%
@@ -162,6 +176,7 @@ player_names =
 % |xlsread| returns two values, |num| and |txt|.
 %
 % 1. |num| is a *matrix* containing all the numeric data
+%
 % 2. |txt| is a *cell array* containing all the text data
 
 
@@ -225,7 +240,65 @@ player_names = txt(3:end, 2)
 
 %%
 % Don't confuse this with using curly brackets |{}| to access
-% values from a cell array, which _doesn't_ put the values
+% values from a cell array, which _doesn't_ put values
 % in a new cell array.
+
+%% Writing Data to Excel Files
+%
+% Let's say we have some new data that we'd
+% like to write into |RaceResults.xlsx|:
+
+new_name = {'Koopa'};
+new_lap_times = [18.1, 18.9, 22.4, 23.6, 17.1];
+
+%%
+% We can do this as follows:
+
+xlswrite('RaceResults.xlsx', 5, 1, 'A7');
+xlswrite('RaceResults.xlsx', new_name, 1, 'B7');
+xlswrite('RaceResults.xlsx', new_lap_times, 1, 'C7');
+
+%%
+% Now have a look at |RaceResults.xlsx|:
+
+%%
+% 
+% <html>
+% <img src="../mariokart_data_new.png">
+% </html>
+
+%%
+% The line
+
+xlswrite('RaceResults.xlsx', 5, 1, 'A7');
+
+%%
+% tells MATLAB we want to write the number |5| to
+% |RaceResults.xlsx|, in Sheet |1|, Cell |A7|.
+
+%%
+% Similarly, the line
+
+xlswrite('RaceResults.xlsx', new_name, 1, 'B7');
+
+%%
+% tells MATLAB we want to write the cell array
+% |new_name| to |RaceResults.xlsx|, in Sheet |1|,
+% Cell |B7|. Remember, when you're writing 
+% a string, or a collection of strings to
+% an excel file, you need to put them in a cell
+% array first. That's why |new_name| is
+% |{'Koopa'}|, and not |'Koopa'|.
+
+%%
+% And finally, the line
+
+xlswrite('RaceResults.xlsx', new_lap_times, 1, 'C7');
+
+%%
+% tells MATLAB we want to write the
+% vector |new_lap_times| to |RaceResults.xlsx|,
+% in Sheet |1| and beginning at Cell |C7|.
+
 ##### SOURCE END #####
 --></body></html>
