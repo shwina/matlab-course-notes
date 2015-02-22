@@ -120,7 +120,7 @@ xlswrite('RaceResults.xlsx', new_lap_times, 1, 'C7');
 %%
 % 
 % <html>
-% <img src="../mariokart_data_new.png">
+% <img src="../mariokart_data_new.PNG">
 % </html>
 
 %%
