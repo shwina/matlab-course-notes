@@ -99,7 +99,7 @@ grid
 axis([0, 45, 0, 300])
 xlabel(<span class="string">'Distances [AU]'</span>)
 ylabel(<span class="string">'Orbital Periods [years]'</span>);
-</pre><img vspace="5" hspace="5" src="data_fitting_03.png" alt=""> <p>We'll assume that these points can be fit by a function of the following form:</p><p><img src="data_fitting_eq36734.png" alt="$T = ar^b$"></p><p>Where <img src="data_fitting_eq57315.png" alt="$T$"> is the orbital period, and <img src="data_fitting_eq25861.png" alt="$r$"> is the distance of each planet. We don't know the values for <img src="data_fitting_eq34276.png" alt="$a$"> and <img src="data_fitting_eq28812.png" alt="$b$"> in this function; for that, we'll have to do a little math, and use <tt>polyfit</tt>.</p><p>Taking <img src="data_fitting_eq56625.png" alt="$log()$"> on both sides of our function, we have:</p><p><img src="data_fitting_eq43925.png" alt="$log(T) = log(a) + b*log(r)$"></p><p>Now, let's say:</p><p><img src="data_fitting_eq11469.png" alt="$log(T) = T_L$"></p><p><img src="data_fitting_eq00902.png" alt="$log(a) = A_L$"> and</p><p><img src="data_fitting_eq37277.png" alt="$log(r) = r_L$"></p><p>then we have:</p><p><img src="data_fitting_eq47023.png" alt="$T_L = A_L + b*R_L$"></p><p>This means that <img src="data_fitting_eq47736.png" alt="$T_L$"> are <img src="data_fitting_eq11714.png" alt="$R_L$"> are related <i>linearly</i>. In fact, if we plot the log of the orbital periods v/s the log of the distances, we'll see that they fall in a straight line!</p><pre class="codeinput">plot(log(distances), log(orbital_periods), <span class="string">'-o'</span>)
+</pre><img vspace="5" hspace="5" src="data_fitting_03.png" alt=""> <p>We'll assume that these points can be fit by a function of the following form:</p><p><img src="data_fitting_eq36734.png" alt="$T = ar^b$"></p><p>Where <img src="data_fitting_eq57315.png" alt="$T$"> is the orbital period, and <img src="data_fitting_eq25861.png" alt="$r$"> is the distance of each planet. We don't know the values for <img src="data_fitting_eq34276.png" alt="$a$"> and <img src="data_fitting_eq28812.png" alt="$b$"> in this function; for that, we'll have to do a little math, and use <tt>polyfit</tt>.</p><p>Taking <img src="data_fitting_eq56625.png" alt="$log()$"> on both sides of our function, we have:</p><p><img src="data_fitting_eq43925.png" alt="$log(T) = log(a) + b*log(r)$"></p><p>Now, let's say:</p><p><img src="data_fitting_eq11469.png" alt="$log(T) = T_L$"></p><p><img src="data_fitting_eq00902.png" alt="$log(a) = A_L$"> and</p><p><img src="data_fitting_eq70727.png" alt="$log(r) = R_L$"></p><p>then we have:</p><p><img src="data_fitting_eq47023.png" alt="$T_L = A_L + b*R_L$"></p><p>This means that <img src="data_fitting_eq47736.png" alt="$T_L$"> are <img src="data_fitting_eq11714.png" alt="$R_L$"> are related <i>linearly</i>. In fact, if we plot the log of the orbital periods v/s the log of the distances, we'll see that they fall in a straight line!</p><pre class="codeinput">plot(log(distances), log(orbital_periods), <span class="string">'-o'</span>)
 grid
 axis([0, 4, 0, 8])
 xlabel(<span class="string">'log(Distances)'</span>)
@@ -295,7 +295,7 @@ ylabel('Orbital Periods [years]');
 %
 % $log(a) = A_L$ and
 %
-% $log(r) = r_L$
+% $log(r) = R_L$
 %
 % then we have:
 
