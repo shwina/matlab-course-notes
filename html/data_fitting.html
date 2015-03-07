@@ -1,0 +1,380 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>data_fitting</title><meta name="generator" content="MATLAB 8.4"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-03-07"><meta name="DC.source" content="data_fitting.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1></h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Fitting Linear Data</a></li><li><a href="#16">Kepler's Third Law</a></li></ul></div><h2>Fitting Linear Data<a name="1"></a></h2><p>Let's say we're doing an experiment in which we collect the values of resistance for a piece of equipment at different temperatures:</p><pre class="codeinput">temperature = [10, 20, 30, 40, 50, 60];
+resistance = [30.2, 58.5, 91.2, 122.6, 147.6, 188.0];
+</pre><p>Once we have the data, we plot it:</p><pre class="codeinput">plot(temperature, resistance, <span class="string">'*'</span>)
+xlabel(<span class="string">'Temperature [C]'</span>);
+ylabel(<span class="string">'Resistance [ohm]'</span>);
+grid
+axis([0, 70, 20, 200])
+</pre><img vspace="5" hspace="5" src="data_fitting_01.png" alt=""> <p>Looking at the plot, we can assume that a <i>linear</i> relationship exists between the temperature and resistance. This means that we can draw a line such that it passes through all the data points (or atleast comes very close to doing that).</p><p>The equation of this line is:</p><p><img src="data_fitting_eq09205253886577534089.png" alt="$R = a + bT$"></p><p>Where <img src="data_fitting_eq05508344529756732484.png" alt="$a$"> and <img src="data_fitting_eq02044268985122151499.png" alt="$b$"> are some unknown coefficients.</p><p>MATLAB has a <tt>polyfit</tt> function, that lets us determine the coefficients <img src="data_fitting_eq05508344529756732484.png" alt="$a$"> and <img src="data_fitting_eq02044268985122151499.png" alt="$b$"> of a line that best fits some given data.</p><p>In our case, our data is in <tt>temperature</tt> and <tt>resistance</tt>:</p><pre class="codeinput">coefficients = polyfit(temperature, resistance, 1);
+b = coefficients(1);
+a = coefficients(2);
+</pre><p>Now that we have <img src="data_fitting_eq05508344529756732484.png" alt="$a$"> and <img src="data_fitting_eq02044268985122151499.png" alt="$b$">, we can make a plot of our function <img src="data_fitting_eq09205253886577534089.png" alt="$R = a + bT$">. To make a plot of the function, we'll create a vector <tt>T</tt> such that it contains lots of points in the range we are interested in: (0-60 degrees Celsius):</p><pre class="codeinput">T = 0:1:60;
+</pre><p>Then, we'll evaluate the corresponding <tt>R</tt>:</p><pre class="codeinput">R = a + b*T;
+</pre><p>Now we'll plot that function, and also plot the original data over it, so that we can confirm that the funcion indeed fits the data:</p><pre class="codeinput"><span class="comment">% plot the function:</span>
+plot(T, R, <span class="string">'-'</span>)
+hold <span class="string">on</span>
+
+<span class="comment">% plot the data:</span>
+plot(temperature, resistance, <span class="string">'o'</span>)
+xlabel(<span class="string">'Temperature [C]'</span>);
+ylabel(<span class="string">'Resistance [ohm]'</span>);
+grid
+axis([0, 70, 20, 200])
+legend(<span class="string">'Linear Fit'</span>, <span class="string">'Experimental Data'</span>, <span class="string">'Location'</span>, <span class="string">'Best'</span>)
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="data_fitting_02.png" alt=""> <p>Now you know how to fit a line to some data. But what if the data is such that you <i>can't</i> fit a line through it? What if the function that best fits the data is something other than <img src="data_fitting_eq10102542466798653561.png" alt="$a + bx$">? In the section below, we'll see how to fit some data with another function, of the form <img src="data_fitting_eq15253501600300006846.png" alt="$ax^b$">.</p><h2>Kepler's Third Law<a name="16"></a></h2><p>... tells us that the orbital period of a planet - i.e., the time it takes to complete one revolution around its star, is proportional to its distance from that star raised to the power 1.5. Elegantly put:</p><p><img src="data_fitting_eq18108417884220335097.png" alt="$T \propto r^{3/2}$"></p><p>Where <img src="data_fitting_eq14047577632175690031.png" alt="$T$"> is the orbital period of the planet, and <img src="data_fitting_eq04958265083611378313.png" alt="$r$"> is the distance to the star.</p><p>We'll verify Kepler's law for the planets of our <i>own</i> solar system, using some real data:</p><p><a href="http://www.astronomynotes.com/tables/tablesb.htm">http://www.astronomynotes.com/tables/tablesb.htm</a></p><p>Our approach will be as follows:</p><p>1. Plot the raw data points on MATLAB</p><p>2. Assume that this data can be fit using a power law, of the form    <img src="data_fitting_eq01607326478314508830.png" alt="$T = ar^b$"></p><p>3. Use MATLAB's <tt>polyfit</tt> function to determine the coefficients    <tt>a</tt> and <tt>b</tt></p><p>4. Verify that <tt>b</tt> is 1.5</p><p>5. Plot the resulting function <img src="data_fitting_eq10310050861034275005.png" alt="$ar^b$">, and verify    that the data points fall on this curve.</p><p>First, let's enter and plot the data:</p><pre class="codeinput">distances = [0.387,0.723, 1.000, 1.524, <span class="keyword">...</span>
+             5.203, 9.537, 19.191, 30.069, 39.482];
+orbital_periods = [87.969/365.0, 224.701/365.0, 1.0, 686.98/365.0, <span class="keyword">...</span>
+                    11.862, 29.457, 84.011, 164.79, 247.68];
+
+plot(distances, orbital_periods, <span class="string">'o'</span>);
+grid
+axis([0, 45, 0, 300])
+xlabel(<span class="string">'Distances [AU]'</span>)
+ylabel(<span class="string">'Orbital Periods [years]'</span>);
+</pre><img vspace="5" hspace="5" src="data_fitting_03.png" alt=""> <p>We'll assume that these points can be fit by a function of the following form:</p><p><img src="data_fitting_eq01607326478314508830.png" alt="$T = ar^b$"></p><p>Where <img src="data_fitting_eq14047577632175690031.png" alt="$T$"> is the orbital period, and <img src="data_fitting_eq04958265083611378313.png" alt="$r$"> is the distance of each planet. We don't know the values for <img src="data_fitting_eq05508344529756732484.png" alt="$a$"> and <img src="data_fitting_eq02044268985122151499.png" alt="$b$"> in this function; for that, we'll have to do a little math, and use <tt>polyfit</tt>.</p><p>Taking <img src="data_fitting_eq03111516965265809432.png" alt="$log()$"> on both sides of our function, we have:</p><p><img src="data_fitting_eq07986423897245292575.png" alt="$log(T) = log(a) + b*log(r)$"></p><p>Now, let's say:</p><p><img src="data_fitting_eq10190131742629009374.png" alt="$log(T) = T_L$"></p><p><img src="data_fitting_eq13813060996052979854.png" alt="$log(a) = A_L$"> and</p><p><img src="data_fitting_eq06956327127707757657.png" alt="$log(r) = r_L$"></p><p>then we have:</p><p><img src="data_fitting_eq09338447409233552834.png" alt="$T_L = A_L + b*R_L$"></p><p>This means that <img src="data_fitting_eq01708487272386156226.png" alt="$T_L$"> are <img src="data_fitting_eq12364181772184019332.png" alt="$R_L$"> are related <i>linearly</i>. In fact, if we plot the log of the orbital periods v/s the log of the distances, we'll see that they fall in a straight line!</p><pre class="codeinput">plot(log(distances), log(orbital_periods), <span class="string">'-o'</span>)
+grid
+axis([0, 4, 0, 8])
+xlabel(<span class="string">'log(Distances)'</span>)
+ylabel(<span class="string">'log(Orbital Periods)'</span>)
+</pre><img vspace="5" hspace="5" src="data_fitting_04.png" alt=""> <p>The coefficients that describe this line are <img src="data_fitting_eq04920737949419497861.png" alt="$A_L$"> and <img src="data_fitting_eq02044268985122151499.png" alt="$b$">, and we can use <tt>polyfit</tt> to determine them:</p><pre class="codeinput">coefficients = polyfit(log(distances), log(orbital_periods), 1);
+b = coefficients(1);
+A_L = coefficients(2);
+</pre><p>But for our function, we need <img src="data_fitting_eq05508344529756732484.png" alt="$a$">, not <img src="data_fitting_eq04920737949419497861.png" alt="$A_L$">. Since <img src="data_fitting_eq04920737949419497861.png" alt="$A_L$"> is just <img src="data_fitting_eq01675203409023245065.png" alt="$log(a)$">, we can get <img src="data_fitting_eq05508344529756732484.png" alt="$a$"> as:</p><pre class="codeinput">a = exp(A_L);
+</pre><p>Now we have both the parameters for our function <img src="data_fitting_eq01607326478314508830.png" alt="$T = ar^b$">. Let's plot this function:</p><pre class="codeinput">r = 1:0.1:40;
+T = a*(r.^b);
+</pre><pre class="codeinput">plot(distances, orbital_periods, <span class="string">'o'</span>)
+hold <span class="string">on</span>
+plot(r, T, <span class="string">'-'</span>);
+grid
+axis([0, 45, 0, 300])
+legend(<span class="string">'Actual data'</span>, <span class="string">'Fitted function'</span>, <span class="string">'Location'</span>, <span class="string">'Best'</span>)
+hold <span class="string">off</span>
+</pre><img vspace="5" hspace="5" src="data_fitting_05.png" alt=""> <p>So our function fits the data quite well. Further, let's have a look at its coefficients:</p><pre class="codeinput">disp(a)
+disp(b)
+</pre><pre class="codeoutput">    1.0006
+
+    1.4995
+
+</pre><p>Which means, that the fitting function, is roughly:</p><p><img src="data_fitting_eq04883630487138804077.png" alt="$T = 1.006 r^{1.499}$"></p><p>So, we're able to confirm, as Kepler theorized more than 400 years ago, that the orbital period of a planet is indeed proportional to its distance from the star raised to 1.5. Science is awesome.</p><p>And here's a bad picture I took of Jupiter through my telescope!</p><p>
+<img src=http://i.imgur.com/Lf4OydX.jpg width=250px>
+</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+
+%% Fitting Linear Data
+% Let's say we're doing an experiment in which
+% we collect the values of resistance for a piece of equipment
+% at different temperatures:
+
+temperature = [10, 20, 30, 40, 50, 60];
+resistance = [30.2, 58.5, 91.2, 122.6, 147.6, 188.0];
+
+%%
+% Once we have the data, we plot it:
+
+%%
+plot(temperature, resistance, '*')
+xlabel('Temperature [C]');
+ylabel('Resistance [ohm]');
+grid
+axis([0, 70, 20, 200])
+
+%%
+% Looking at the plot, we can assume that a
+% _linear_ relationship
+% exists between the temperature and resistance.
+% This means that we can draw a line such that
+% it passes through all the data points (or atleast
+% comes very close to doing that).
+
+%%
+% The equation of this line is:
+
+%%
+% $R = a + bT$
+
+%%
+% Where $a$ and $b$ are some unknown coefficients.
+
+%%
+% MATLAB has a |polyfit| function, that lets
+% us determine the coefficients $a$ and $b$
+% of a line that best fits some given data.
+
+%%
+% In our case, our data is in |temperature| and
+% |resistance|:
+
+%%
+coefficients = polyfit(temperature, resistance, 1);
+b = coefficients(1);
+a = coefficients(2);
+
+%%
+% Now that we have $a$ and $b$, we can make a plot
+% of our function $R = a + bT$. To make a plot
+% of the function, we'll create a vector |T| such that it
+% contains lots of points in the range we are interested in:
+% (0-60 degrees Celsius):
+
+%%
+T = 0:1:60;
+
+%%
+% Then, we'll evaluate the corresponding |R|:
+R = a + b*T;
+
+%%
+% Now we'll plot that function, and also plot
+% the original data over it, so that we can confirm
+% that the funcion indeed fits the data:
+
+% plot the function:
+plot(T, R, '-')
+hold on
+
+% plot the data:
+plot(temperature, resistance, 'o')
+xlabel('Temperature [C]');
+ylabel('Resistance [ohm]');
+grid
+axis([0, 70, 20, 200])
+legend('Linear Fit', 'Experimental Data', 'Location', 'Best')
+hold off
+
+%%
+% Now you know how to fit a line to some data. But what if
+% the data is such that you _can't_ fit a line through it?
+% What if the function that best fits the data is something
+% other than $a + bx$? In the section below, we'll see
+% how to fit some data with another function, of the form
+% $ax^b$.
+
+%% Kepler's Third Law
+% ... tells us that
+% the orbital period of a planet - i.e.,
+% the time it takes to complete one revolution around its star,
+% is proportional to its distance from that star
+% raised to the power 1.5. Elegantly put:
+
+%%
+% $T \propto r^{3/2}$
+
+%%
+% Where $T$ is the orbital period of the planet, and $r$ is the
+% distance to the star.
+
+%%
+% We'll verify Kepler's law for the planets of our _own_ solar
+% system, using some real data:
+%
+% http://www.astronomynotes.com/tables/tablesb.htm
+
+%%
+% Our approach will be as follows:
+%
+% 1. Plot the raw data points on MATLAB
+%
+% 2. Assume that this data can be fit using a power law, of the form
+%    $T = ar^b$
+%
+% 3. Use MATLAB's |polyfit| function to determine the coefficients
+%    |a| and |b|
+%
+% 4. Verify that |b| is 1.5
+%
+% 5. Plot the resulting function $ar^b$, and verify
+%    that the data points fall on this curve.
+
+%%
+% First, let's enter and plot the data:
+
+distances = [0.387,0.723, 1.000, 1.524, ...
+             5.203, 9.537, 19.191, 30.069, 39.482];
+orbital_periods = [87.969/365.0, 224.701/365.0, 1.0, 686.98/365.0, ...
+                    11.862, 29.457, 84.011, 164.79, 247.68];
+                
+plot(distances, orbital_periods, 'o');
+grid
+axis([0, 45, 0, 300])
+xlabel('Distances [AU]')
+ylabel('Orbital Periods [years]');
+
+
+%%
+% We'll assume that these points can be fit 
+% by a function of the following form:
+
+%%
+% $T = ar^b$
+
+%%
+% Where $T$ is the orbital period, and $r$ is the distance
+% of each planet. We don't know the values for $a$ and
+% $b$ in this function; for that, we'll have to do a little
+% math, and use |polyfit|.
+
+%%
+% Taking $log()$ on both sides of our function, we have:
+
+%%
+% $log(T) = log(a) + b*log(r)$
+
+%%
+% Now, let's say:
+
+%%
+% $log(T) = T_L$
+%
+% $log(a) = A_L$ and
+%
+% $log(r) = r_L$
+%
+% then we have:
+
+%%
+% $T_L = A_L + b*R_L$
+
+%%
+% This means that $T_L$ are $R_L$ are related _linearly_.
+% In fact, if we plot the log of the orbital periods v/s
+% the log of the distances, we'll see that they fall in
+% a straight line!
+
+%%
+plot(log(distances), log(orbital_periods), '-o')
+grid
+axis([0, 4, 0, 8])
+xlabel('log(Distances)')
+ylabel('log(Orbital Periods)')
+
+%%
+% The coefficients that describe this line are
+% $A_L$ and $b$, and we can use |polyfit| to determine
+% them:
+
+%%
+coefficients = polyfit(log(distances), log(orbital_periods), 1);
+b = coefficients(1);
+A_L = coefficients(2);
+
+%%
+% But for our function, we need $a$, not $A_L$.
+% Since $A_L$ is just $log(a)$, we can get $a$ as:
+
+%%
+a = exp(A_L);
+
+%%
+% Now we have both the parameters for our function
+% $T = ar^b$. Let's plot this function:
+
+%%
+r = 1:0.1:40;
+T = a*(r.^b);
+
+%%
+plot(distances, orbital_periods, 'o')
+hold on
+plot(r, T, '-');
+grid
+axis([0, 45, 0, 300])
+legend('Actual data', 'Fitted function', 'Location', 'Best')
+hold off
+
+%%
+% So our function fits the data quite well. Further,
+% let's have a look at its coefficients:
+
+%%
+disp(a)
+disp(b)
+
+%%
+% Which means, that the fitting function, is roughly:
+
+%%
+% $T = 1.006 r^{1.499}$
+
+%%
+% So, we're able to confirm, as Kepler theorized more than 400 years ago,
+% that the orbital period of a planet is indeed proportional to
+% its distance from the star raised to 1.5. Science is awesome.
+
+%%
+% And here's a bad picture I took of Jupiter through my telescope!
+
+%%
+% <html>
+% <img src=http://i.imgur.com/Lf4OydX.jpg width=250px>
+% </html>
+##### SOURCE END #####
+--></body></html>
