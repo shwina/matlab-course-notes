@@ -115,7 +115,7 @@ disp('Blast off!')
 %%
 %  while 1
 %      user_input = input('Enter the efficiency of the engine: ')
-%      if (user_input >= 0 && user_input <= 1)
+%      if (user_input > 0 && user_input < 1)
 %          break
 %      end
 %  end
