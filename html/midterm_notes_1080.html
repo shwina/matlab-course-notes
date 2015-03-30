@@ -100,7 +100,7 @@ y_curve = b*(x_curve.^a);
 hold <span class="string">on</span>
 plot(x_curve, y_curve)
 hold <span class="string">off</span>
-</pre><img vspace="5" hspace="5" src="midterm_notes_1080_04.png" alt=""> <p>... and we'll see that it's a good fit. I haven't explained <i>why</i> we do this <tt>log</tt> and <tt>exp</tt> business. That's explained in some detail in my notes for Lecture 3.</p><h2>Fitting exponential data (<img src="midterm_notes_1080_eq07701614922180248285.png" alt="$be^{ax}$">)<a name="18"></a></h2><p>Finally, we can have data that <i>exponentially</i> decays (or increases).</p><pre class="codeinput">x = [1, 2, 3, 4, 5];
+</pre><img vspace="5" hspace="5" src="midterm_notes_1080_04.png" alt=""> <p>... and we'll see that it's a good fit. I haven't explained <i>why</i> we do this <tt>log</tt> and <tt>exp</tt> business. That's explained in some detail in my notes for Lecture 2.</p><h2>Fitting exponential data (<img src="midterm_notes_1080_eq07701614922180248285.png" alt="$be^{ax}$">)<a name="18"></a></h2><p>Finally, we can have data that <i>exponentially</i> decays (or increases).</p><pre class="codeinput">x = [1, 2, 3, 4, 5];
 y = [22.3, 4.80, 1.21, 0.25, 0.055];
 plot(x, y, <span class="string">'o'</span>)
 xlabel(<span class="string">'x'</span>)
@@ -114,7 +114,7 @@ y_curve = b*exp(a*x_curve);
 hold <span class="string">on</span>
 plot(x_curve, y_curve)
 hold <span class="string">off</span>
-</pre><img vspace="5" hspace="5" src="midterm_notes_1080_06.png" alt=""> <p>Again, if you're curious about <i>why</i> we use <tt>log</tt> and <tt>exp</tt> like this, look at my notes from lecture 3, and you will be able to work it out.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014b</a><br></p></div><!--
+</pre><img vspace="5" hspace="5" src="midterm_notes_1080_06.png" alt=""> <p>Again, if you're curious about <i>why</i> we use <tt>log</tt> and <tt>exp</tt> like this, look at my notes from lecture 2, and you will be able to work it out.</p><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2014b</a><br></p></div><!--
 ##### SOURCE BEGIN #####
 
 
@@ -226,7 +226,7 @@ hold off
 % ... and we'll see that it's a good fit.
 % I haven't explained _why_ we do this
 % |log| and |exp| business. That's explained
-% in some detail in my notes for Lecture 3.
+% in some detail in my notes for Lecture 2.
 
 
 
@@ -271,7 +271,7 @@ hold off
 %%
 % Again, if you're curious about _why_
 % we use |log| and |exp| like this,
-% look at my notes from lecture 3,
+% look at my notes from lecture 2,
 % and you will be able to work it out.
 ##### SOURCE END #####
 --></body></html>
